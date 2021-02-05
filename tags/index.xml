@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on openQA bites</title>
-    <link>http://openqa-blog/tags/</link>
+    <link>https://grisu48.github.io/tags/</link>
     <description>Recent content in Tags on openQA bites</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>felix.niederwanger@suse.de (phoenix)</managingEditor>
     <webMaster>felix.niederwanger@suse.de (phoenix)</webMaster>
-    <lastBuildDate>Thu, 04 Feb 2021 14:50:02 +0100</lastBuildDate><atom:link href="http://openqa-blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Feb 2021 14:50:02 +0100</lastBuildDate><atom:link href="https://grisu48.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Scripting</title>
-      <link>http://openqa-blog/tags/scripting/</link>
+      <link>https://grisu48.github.io/tags/scripting/</link>
       <pubDate>Thu, 04 Feb 2021 14:50:02 +0100</pubDate>
       <author>felix.niederwanger@suse.de (phoenix)</author>
-      <guid>http://openqa-blog/tags/scripting/</guid>
+      <guid>https://grisu48.github.io/tags/scripting/</guid>
       <description></description>
     </item>
     
