@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Background bash commands - openQA bites</title>
-  <meta name="description" content="This post describes the caveats and correct handling of the bash background operator within openQA.">
+  <title>What are Needles - openQA bites</title>
+  <meta name="description" content="In this blog post we are going to give you the most easy introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.">
   <meta name="author" content="phoenix"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -44,8 +44,8 @@
         "@type": "ListItem",
         "position": 3,
         "item": {
-          "@id": "https:\/\/openQA-Bites.github.io\/posts\/2021-02-04-background-scripts\/",
-          "name": "Background bash commands"
+          "@id": "https:\/\/openQA-Bites.github.io\/posts\/2021-02-10-needles\/",
+          "name": "What are needles"
         }
     }]
 }
@@ -56,15 +56,15 @@
   "author": {
     "name" : "phoenix"
   },
-  "headline": "Background bash commands",
-  "description" : "This post describes the caveats and correct handling of the bash background operator within openQA.",
+  "headline": "What are Needles",
+  "description" : "In this blog post we are going to give you the most easy introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.",
   "inLanguage" : "en",
-  "wordCount":  534 ,
-  "datePublished" : "2021-02-04T14:50:02",
-  "dateModified" : "2021-02-04T14:50:02",
+  "wordCount":  921 ,
+  "datePublished" : "2021-02-10T09:57:30",
+  "dateModified" : "2021-02-10T09:57:30",
   "image" : "https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png",
-  "keywords" : [ "Scripting" ],
-  "mainEntityOfPage" : "https:\/\/openQA-Bites.github.io\/posts\/2021-02-04-background-scripts\/",
+  "keywords" : [ "Needles" ],
+  "mainEntityOfPage" : "https:\/\/openQA-Bites.github.io\/posts\/2021-02-10-needles\/",
   "publisher" : {
     "@type": "Organization",
     "name" : "https:\/\/openQA-Bites.github.io\/",
@@ -78,15 +78,15 @@
 }
 </script>
 
-<meta property="og:title" content="Background bash commands" />
-<meta property="og:description" content="This post describes the caveats and correct handling of the bash background operator within openQA.">
+<meta property="og:title" content="What are Needles" />
+<meta property="og:description" content="In this blog post we are going to give you the most easy introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png" />
-<meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-02-04-background-scripts/" />
+<meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-02-10-needles/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="openQA bites" />
 
-  <meta name="twitter:title" content="Background bash commands" />
-  <meta name="twitter:description" content="This post describes the caveats and correct handling of the bash background operator within openQA.">
+  <meta name="twitter:title" content="What are Needles" />
+  <meta name="twitter:description" content="In this blog post we are going to give you the most easy introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me …">
   <meta name="twitter:image" content="https://openQA-Bites.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://openQA-Bites.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -206,7 +206,7 @@
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
               
-                <h1>Background bash commands</h1>
+                <h1>What are Needles</h1>
               
               
               
@@ -214,13 +214,13 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on February 4, 2021
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 10, 2021
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;534&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;921&nbsp;words
   
   
     
@@ -245,67 +245,103 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>Most of the openQA test cases run command sequentially. One command nicely after the next one. But in some cases it can be useful, to run a handful of commands in parallel and then wait for them to finish. Here we are covering the caveats of using the bash background operator <code>&amp;</code> in openQA.</p>
-<p>The TL;DR is at the end of the post</p>
-<h1 id="usage-example">Usage example</h1>
-<p>For instance, in virtualization testing, we install a handful of virtual machines in parallel via ``virt-install`:</p>
-<pre><code>assert_script_run('( virt-install --os-variant sles12sp3 --name sles12sp3 ... &gt;&gt; ~/virt-install_sles12sp3.txt 2&gt;&amp;1 &amp;)');
-assert_script_run('( virt-install --os-variant sles12sp4 --name sles12sp4 ... &gt;&gt; ~/virt-install_sles12sp4.txt 2&gt;&amp;1 &amp;)');
-assert_script_run('( virt-install --os-variant sles12sp5 --name sles12sp5 ... &gt;&gt; ~/virt-install_sles12sp5.txt 2&gt;&amp;1 &amp;)');
+        <p>In this blog post we are going to give you the most easy introduction to what needles are and how you can use them.
+While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use
+and easy-to-understand introduction into this topic alone.
+This blog post should fill this gap.</p>
+<h1 id="what-is-a-needle">What is a needle?</h1>
+<p>A needle is just a screenshot plus a definition, which part of that screenshot must match. Each of those parts has also a matching-parameter which determines, how good that region must match with the given prototype. Needles are identified by <code>tags</code>.</p>
+<p>Let&rsquo;s break this description down top-to-bottom. This is a needle:</p>
+<p><img src="Needle.png" alt="Screenshot of GIMP with three Green boxes. One at the Title bar, one at the File menu and one at the GIMP logo in the drawing area"></p>
+<p>Don&rsquo;t get confused by the singular. A needle can consist of multiple regions and is still called &ldquo;a needle&rdquo;.</p>
+<p>Now let&rsquo;s look again at the figure above: You see a screenshot plus some green regions. When openQA looks for this needle it looks only at the green regions and ignores the rest. In order for the needle to match, each region needs to be present up to a given precision, which is defined via the <code>match</code> parameter.</p>
+<p>And that&rsquo;s it. Exactly that is a needle. It is just a screenshot plus a json file which defines, what parts of that screenshot must match to what precision.
+A needle also can handle mouse clicks, this will be covered later in this post.</p>
+<h2 id="what-are-needles-used-for">What are needles used for?</h2>
+<p>openQA shines when it comes to GUI testing. It is able to interact with a machine (virtual or bare-metal) and interact with it. It does so, by matching needles to the visual output of that machine and/or perform commands within a terminal.</p>
+<p>Needles are used here to match the current screen output of a machine to a given predefined screenshot. For instance, when openQA tests the installation of a ISO image, it walks through the installation process screen by screen, matching each screen output of the machine against well-known needles and handling mouse clicks and typing events. Needles are just &ldquo;look for XY&rdquo; directives for openQA in order to validate, if the given screen is valid or not.
+openQA can do much more, but this is beyond the scope of this article.</p>
+<h2 id="why-are-needles-identified-by-tags">Why are needles identified by &ldquo;tags&rdquo;?</h2>
+<p>Needles are identified with <code>tags</code> and multiple needles can match the same <code>tag</code>. This is needed because openQA is able to test different versions and flavors of one distribution at the same time.
+A needle which should match for instance Firefox on gnome might looks slightly different on openSUSE Leap than on Tumbleweed. Because the underlying test script is the same, but the screen might looks slightly different, there is a need to support multiple needles with the same <code>tag</code>.</p>
+<p>Another reason is that a update for instance of the font might change the appearance of a Needle just enough, that the old one does not match anymore.
+This is a well-known issue and the reason for some extensive &ldquo;re-needling&rdquo; some times. Font or logo changes are good examples of when this is needed.</p>
+<p>Old needles are typically not deleted but kept, in the case one needs to re-run those test runs for whatever reason.</p>
+<h2 id="needles-and-mouse-click-events">Needles and mouse-click events</h2>
+<p>Needles are the closest part to the GUI in openQA, which makes them also the most suitable place for handling mouse-click events. Each needle can define a region, where openQA should click when that needle is matched. Don&rsquo;t worry, mouse-clicks are handled only, if the underlying test script tells it to do so (by using e.g. <code>assert_and_click</code> instead of <code>assert_screen</code>).</p>
+<h2 id="perspective-from-the-raw-needles-files">Perspective from the raw needles files</h2>
+<p>Another approach of trying to understand needles is to look how needles are stored on the disk. The needles for openSUSE for instance are found on <a href="https://github.com/os-autoinst/os-autoinst-needles-opensuse">github.com/os-autoinst/os-autoinst-needles-opensuse</a>.</p>
+<p>Let&rsquo;s look again at the example needle from above. This needle consists of two files:</p>
+<ul>
+<li><a href="flatpak-gimp-launched-20210210.png">flatpak-gimp-launched-20210210.png</a> - The screenshot</li>
+<li><a href="flatpak-gimp-launched-20210210.json">flatpak-gimp-launched-20210210.json</a> - The definition file</li>
+</ul>
+<p>The screenshot is really just the screenshot as png file. The definition file is a <code>json</code> file that looks like the following:</p>
+<pre><code>{
+  &quot;area&quot;: [
+    {
+      &quot;xpos&quot;: 391,
+      &quot;ypos&quot;: 34,
+      &quot;width&quot;: 246,
+      &quot;height&quot;: 25,
+      &quot;type&quot;: &quot;match&quot;,
+      &quot;match&quot;: 90
+    },
+    {
+      &quot;xpos&quot;: 4,
+      &quot;ypos&quot;: 69,
+      &quot;width&quot;: 28,
+      &quot;height&quot;: 19,
+      &quot;type&quot;: &quot;match&quot;,
+      &quot;match&quot;: 90
+    },
+    {
+      &quot;xpos&quot;: 276,
+      &quot;ypos&quot;: 627,
+      &quot;width&quot;: 183,
+      &quot;height&quot;: 119,
+      &quot;type&quot;: &quot;match&quot;,
+      &quot;match&quot;: 85
+    },
+    {
+      &quot;xpos&quot;: 998,
+      &quot;ypos&quot;: 37,
+      &quot;width&quot;: 16,
+      &quot;height&quot;: 17,
+      &quot;type&quot;: &quot;match&quot;,
+      &quot;click_point&quot;: {
+        &quot;xpos&quot;: 8,
+        &quot;ypos&quot;: 8.5
+      }
+    }
+  ],
+  &quot;properties&quot;: [],
+  &quot;tags&quot;: [
+    &quot;flatpak-gimp&quot;
+  ]
+}
 </code></pre>
-<p>The general problem is, that you would like to run a set of bash commands in parallel, and wait for all of them to complete. In terms of code, you would like to do the following:</p>
-<pre><code>$ sleep 30 &amp;         # or another command that takes some time
-$ sleep 30 &amp;
-$ sleep 30 &amp;
-$ sleep 30 &amp;
-$ sleep 30 &amp;
-$ wait
-</code></pre>
-<p>Unfortunately enclosing those comments by a simple <code>assert_script_run</code> will not work, because of the handling with the serial terminal.</p>
-<pre><code>assert_script_run('sleep 30 &amp;');       # will result in a bash syntax error
-</code></pre>
-<p>The problem is, that openqa adds something like <code>; echo ~59bn-\$?-&quot;</code> at the end of the command, resulting in</p>
-<pre><code>sleep 30 &amp; ; echo ~59bn-\$?-
-</code></pre>
-<p>Now, <code>&amp;</code> and <code>;</code> are both terminators in bash resulting in an empty command between those two&rsquo;s which is not allowed. A quick fix is to add <code>true</code> in between those twos:</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');  # OK!
-</code></pre>
-<h1 id="enclosing-within-brackets-is-a-bad-idea">Enclosing within brackets is a bad idea</h1>
-<p>Another often seen solution is to enclose the commands between brackets:</p>
-<pre><code>assert_script_run('(sleep 30 &amp; )');  # don't do that!
-</code></pre>
-<p>This is fine, unless you need to interact with your background jobs. The reason is, that the commands between the brackets are not available in the outside context. This means, bash does not keep track of those processes, so that a subsequent <code>wait</code> will not wait for those. This can be seen in the following example</p>
-<pre><code>$ (sleep 30 &amp; ); wait            # will not wait for sleep, terminates immediately
-$ (sleep 30 &amp; ); jobs            # sleep is not visible
-</code></pre>
-<p>You can see, that the <code>sleep</code> command is not accessible in the context outside of the brackets. <code>wait</code> terminates immediately and <code>sleep</code> does not appear as a job in <code>jobs</code>. The correct way would be to omit the brackets and the semicolon:</p>
-<pre><code>$ sleep 30 &amp; wait
-[1] 12015
+<p>We can see here, that it defines three rectangular areas, defined with via their upper-left position (<code>xpos</code>, <code>ypos</code>) and their <code>width</code> and <code>height</code>. Those match exactly the green boxes in the example figure above. This needle has a single tag <code>flatpak-gimp</code>. In addition it also has a <code>click_point</code> in one of the areas, which defines the position where a mouseclick would happen, if desired.</p>
+<p>If you would like to match for this needle, you could do it as follows.</p>
+<pre><code># only match the given needle
+assert_screen('flatpak-GIMP');
 
-$ sleep 30 &amp; jobs
-[1] 12038
-[1]+  Running                 sleep 30 &amp;
+# match the given needle and perform a mouse-click on the defined coordinates
+assert_and_click('flatpak-GIMP');
 </code></pre>
-<p>So, back to our starting point, if you enclose the commands in brackets, a subsequent <code>wait</code> will not work and this is why I believe that enclosing bash commands between brackets is a bad idea:</p>
-<pre><code>assert_script_run('(sleep 30 &amp; )');
-assert_script_run('wait');               # Will NOT wait for the sleep above!
-</code></pre>
-<p>The correct solution would be to add a <code>true</code> at the end of the <code>sleep</code> command</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');
-assert_script_run('wait');               # this works
-</code></pre>
+<p>How to use needles when writing openQA tests will be covered in a different blog post.</p>
 <h1 id="tldr">TL;DR</h1>
-<p>The correct way of running bash commands in the background is</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');
-assert_script_run('sleep 30 &amp; true');
-assert_script_run('wait');
-</code></pre>
+<ul>
+<li>A needle is a screenshot plus a definition, which part of that screenshot must match to which precision</li>
+<li>Needles are identified by <code>tags</code> and multiple needles can match a tag</li>
+<li>Among others, font and logo changes are often reason for &ldquo;re-needling&rdquo;, i.e. creating new needles because the old ones don&rsquo;t match any more</li>
+</ul>
 
 
         
           <div class="blog-tags">
             
-              <a href="https://openQA-Bites.github.io//tags/scripting/">Scripting</a>&nbsp;
+              <a href="https://openQA-Bites.github.io//tags/needles/">Needles</a>&nbsp;
             
           </div>
         
@@ -320,42 +356,42 @@ assert_script_run('wait');
     <ul class="share">
       
       <li>
-        <a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;text=Background%20bash%20commands&amp;via=" target="_blank" title="Share on Twitter">
+        <a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;text=What%20are%20Needles&amp;via=" target="_blank" title="Share on Twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f" target="_blank" title="Share on Facebook">
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f" target="_blank" title="Share on Facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;title=Background%20bash%20commands" target="_blank" title="Share on Reddit">
+        <a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;title=What%20are%20Needles" target="_blank" title="Share on Reddit">
           <i class="fab fa-reddit"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;title=Background%20bash%20commands" target="_blank" title="Share on LinkedIn">
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;title=What%20are%20Needles" target="_blank" title="Share on LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;title=Background%20bash%20commands" target="_blank" title="Share on StumbleUpon">
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;title=What%20are%20Needles" target="_blank" title="Share on StumbleUpon">
           <i class="fab fa-stumbleupon"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;description=Background%20bash%20commands" target="_blank" title="Share on Pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;description=What%20are%20Needles" target="_blank" title="Share on Pinterest">
           <i class="fab fa-pinterest"></i>
         </a>
       </li>
@@ -373,10 +409,10 @@ assert_script_run('wait');
       
         <ul class="pager blog-pager">
           
-          
-            <li class="next">
-              <a href="https://openQA-Bites.github.io/posts/2021-02-10-needles/" data-toggle="tooltip" data-placement="top" title="What are Needles">Next Post &rarr;</a>
+            <li class="previous">
+              <a href="https://openQA-Bites.github.io/posts/2021-02-04-background-scripts/" data-toggle="tooltip" data-placement="top" title="Background bash commands">&larr; Previous Post</a>
             </li>
+          
           
         </ul>
       
