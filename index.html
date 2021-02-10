@@ -215,62 +215,8 @@
     </p>
     <div class="post-entry">
         
-        <p>Most of the openQA test cases run command sequentially. One command nicely after the next one. But in some cases it can be useful, to run a handful of commands in parallel and then wait for them to finish. Here we are covering the caveats of using the bash background operator <code>&amp;</code> in openQA.</p>
-<p>The TL;DR is at the end of the post</p>
-<h1 id="usage-example">Usage example</h1>
-<p>For instance, in virtualization testing, we install a handful of virtual machines in parallel via ``virt-install`:</p>
-<pre><code>assert_script_run('( virt-install --os-variant sles12sp3 --name sles12sp3 ... &gt;&gt; ~/virt-install_sles12sp3.txt 2&gt;&amp;1 &amp;)');
-assert_script_run('( virt-install --os-variant sles12sp4 --name sles12sp4 ... &gt;&gt; ~/virt-install_sles12sp4.txt 2&gt;&amp;1 &amp;)');
-assert_script_run('( virt-install --os-variant sles12sp5 --name sles12sp5 ... &gt;&gt; ~/virt-install_sles12sp5.txt 2&gt;&amp;1 &amp;)');
-</code></pre>
-<p>The general problem is, that you would like to run a set of bash commands in parallel, and wait for all of them to complete. In terms of code, you would like to do the following:</p>
-<pre><code>$ sleep 30 &amp;         # or another command that takes some time
-$ sleep 30 &amp;
-$ sleep 30 &amp;
-$ sleep 30 &amp;
-$ sleep 30 &amp;
-$ wait
-</code></pre>
-<p>Unfortunately enclosing those comments by a simple <code>assert_script_run</code> will not work, because of the handling with the serial terminal.</p>
-<pre><code>assert_script_run('sleep 30 &amp;');       # will result in a bash syntax error
-</code></pre>
-<p>The problem is, that openqa adds something like <code>; echo ~59bn-\$?-&quot;</code> at the end of the command, resulting in</p>
-<pre><code>sleep 30 &amp; ; echo ~59bn-\$?-
-</code></pre>
-<p>Now, <code>&amp;</code> and <code>;</code> are both terminators in bash resulting in an empty command between those two&rsquo;s which is not allowed. A quick fix is to add <code>true</code> in between those twos:</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');  # OK!
-</code></pre>
-<h1 id="enclosing-within-brackets-is-a-bad-idea">Enclosing within brackets is a bad idea</h1>
-<p>Another often seen solution is to enclose the commands between brackets:</p>
-<pre><code>assert_script_run('(sleep 30 &amp; )');  # don't do that!
-</code></pre>
-<p>This is fine, unless you need to interact with your background jobs. The reason is, that the commands between the brackets are not available in the outside context. This means, bash does not keep track of those processes, so that a subsequent <code>wait</code> will not wait for those. This can be seen in the following example</p>
-<pre><code>$ (sleep 30 &amp; ); wait            # will not wait for sleep, terminates immediately
-$ (sleep 30 &amp; ); jobs            # sleep is not visible
-</code></pre>
-<p>You can see, that the <code>sleep</code> command is not accessible in the context outside of the brackets. <code>wait</code> terminates immediately and <code>sleep</code> does not appear as a job in <code>jobs</code>. The correct way would be to omit the brackets and the semicolon:</p>
-<pre><code>$ sleep 30 &amp; wait
-[1] 12015
-
-$ sleep 30 &amp; jobs
-[1] 12038
-[1]+  Running                 sleep 30 &amp;
-</code></pre>
-<p>So, back to our starting point, if you enclose the commands in brackets, a subsequent <code>wait</code> will not work and this is why I believe that enclosing bash commands between brackets is a bad idea:</p>
-<pre><code>assert_script_run('(sleep 30 &amp; )');
-assert_script_run('wait');               # Will NOT wait for the sleep above!
-</code></pre>
-<p>The correct solution would be to add a <code>true</code> at the end of the <code>sleep</code> command</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');
-assert_script_run('wait');               # this works
-</code></pre>
-<h1 id="tldr">TL;DR</h1>
-<p>The correct way of running bash commands in the background is</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');
-assert_script_run('sleep 30 &amp; true');
-assert_script_run('wait');
-</code></pre>
-
+            This post describes the caveats and correct handling of the bash background operator within openQA.
+            <a href="https://openQA-Bites.github.io/posts/2021-02-04-background-scripts/" class="post-read-more">[Read More]</a>
         
     </div>
 
@@ -283,6 +229,7 @@ assert_script_run('wait');
     
 
 </article>
+
           
         </div>
 
