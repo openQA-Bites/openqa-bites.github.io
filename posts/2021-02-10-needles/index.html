@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <title>What are Needles - openQA bites</title>
-  <meta name="description" content="In this blog post we are going to give you the most easy introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.">
+  <meta name="description" content="In this blog post we are going to give you the easiest introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.">
   <meta name="author" content="phoenix"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -57,9 +57,9 @@
     "name" : "phoenix"
   },
   "headline": "What are Needles",
-  "description" : "In this blog post we are going to give you the most easy introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.",
+  "description" : "In this blog post we are going to give you the easiest introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.",
   "inLanguage" : "en",
-  "wordCount":  921 ,
+  "wordCount":  938 ,
   "datePublished" : "2021-02-10T09:57:30",
   "dateModified" : "2021-02-10T09:57:30",
   "image" : "https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png",
@@ -79,14 +79,14 @@
 </script>
 
 <meta property="og:title" content="What are Needles" />
-<meta property="og:description" content="In this blog post we are going to give you the most easy introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.">
+<meta property="og:description" content="In this blog post we are going to give you the easiest introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png" />
 <meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-02-10-needles/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="openQA bites" />
 
   <meta name="twitter:title" content="What are Needles" />
-  <meta name="twitter:description" content="In this blog post we are going to give you the most easy introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me …">
+  <meta name="twitter:description" content="In this blog post we are going to give you the easiest introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me …">
   <meta name="twitter:image" content="https://openQA-Bites.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://openQA-Bites.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -220,7 +220,7 @@
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;921&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;938&nbsp;words
   
   
     
@@ -245,12 +245,12 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>In this blog post we are going to give you the most easy introduction to what needles are and how you can use them.
+        <p>In this blog post we are going to give you the easiest introduction to what needles are and how you can use them.
 While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use
 and easy-to-understand introduction into this topic alone.
 This blog post should fill this gap.</p>
 <h1 id="what-is-a-needle">What is a needle?</h1>
-<p>A needle is just a screenshot plus a definition, which part of that screenshot must match. Each of those parts has also a matching-parameter which determines, how good that region must match with the given prototype. Needles are identified by <code>tags</code>.</p>
+<p>A needle is just a screenshot plus a definition, which part of that screenshot must match. Each of those parts also has a matching-parameter which determines, how good that region must match with the given prototype. Needles are identified by <code>tags</code>.</p>
 <p>Let&rsquo;s break this description down top-to-bottom. This is a needle:</p>
 <p><img src="Needle.png" alt="Screenshot of GIMP with three Green boxes. One at the Title bar, one at the File menu and one at the GIMP logo in the drawing area"></p>
 <p>Don&rsquo;t get confused by the singular. A needle can consist of multiple regions and is still called &ldquo;a needle&rdquo;.</p>
@@ -258,7 +258,7 @@ This blog post should fill this gap.</p>
 <p>And that&rsquo;s it. Exactly that is a needle. It is just a screenshot plus a json file which defines, what parts of that screenshot must match to what precision.
 A needle also can handle mouse clicks, this will be covered later in this post.</p>
 <h2 id="what-are-needles-used-for">What are needles used for?</h2>
-<p>openQA shines when it comes to GUI testing. It is able to interact with a machine (virtual or bare-metal) and interact with it. It does so, by matching needles to the visual output of that machine and/or perform commands within a terminal.</p>
+<p>openQA shines when it comes to GUI testing. It is able to interact with a machine (virtual or bare-metal) without the need of accessibility interfaces or an additional toolkit, nor does it need to install anything on the system under test. It does so, by matching needles to the visual output of that machine and/or perform commands within a terminal.</p>
 <p>Needles are used here to match the current screen output of a machine to a given predefined screenshot. For instance, when openQA tests the installation of a ISO image, it walks through the installation process screen by screen, matching each screen output of the machine against well-known needles and handling mouse clicks and typing events. Needles are just &ldquo;look for XY&rdquo; directives for openQA in order to validate, if the given screen is valid or not.
 openQA can do much more, but this is beyond the scope of this article.</p>
 <h2 id="why-are-needles-identified-by-tags">Why are needles identified by &ldquo;tags&rdquo;?</h2>
