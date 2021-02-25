@@ -59,7 +59,7 @@
   "headline": "Active monitoring of openQA jobs",
   "description" : "openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.",
   "inLanguage" : "en",
-  "wordCount":  913 ,
+  "wordCount":  926 ,
   "datePublished" : "2021-02-25T14:54:57",
   "dateModified" : "2021-02-25T14:54:57",
   "image" : "https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png",
@@ -228,7 +228,7 @@
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;913&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;926&nbsp;words
   
   
     
@@ -322,7 +322,10 @@ openqa-mon -mfc 10 https://openqa.opensuse.org/tests/1644699 http://duck-norris/
            # -m  - Desktop &amp; bell notifications      |       |         # job range
              -f  - Follow jobs (show restarted jobs) |       |
              -c 10  - refresh every 10 seconds       |       # jobid plus next two jobs
-                                                     # Instance and single job id</code></pre>
+                                                     # Instance and single job id
+</code></pre>
+<p><code>openqa-mon</code> also supports jobs across different instances, e.g.</p>
+<pre><code>openqa-mon -mfc 10 https://openqa.opensuse.org/tests/1644699 http://duck-norris/tests/18038</code></pre>
 
 
         
