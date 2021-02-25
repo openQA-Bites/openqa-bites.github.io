@@ -59,7 +59,7 @@
   "headline": "Active monitoring of openQA jobs",
   "description" : "openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.",
   "inLanguage" : "en",
-  "wordCount":  871 ,
+  "wordCount":  913 ,
   "datePublished" : "2021-02-25T14:54:57",
   "dateModified" : "2021-02-25T14:54:57",
   "image" : "https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png",
@@ -228,7 +228,7 @@
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;871&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;913&nbsp;words
   
   
     
@@ -253,19 +253,20 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><code>openqa-mon</code> is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.g. for verification runs.</p>
+        <p><a href="https://github.com/grisu48/openqa-mon"><code>openqa-mon</code></a> is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.g. for verification runs.</p>
 <h2 id="example">Example</h2>
-<p>We are using this tool already since half a year to monitor our virtualization runs. Virtualization runs are a complex construct that run on bare-metal hosts. Our virtualization setup is constantly improving but still sometimes a bit fragile and requires close monitoring. This is what this tool was originally creased for.</p>
+<p>We have been using this tool for half a year already to monitor our virtualization runs. Virtualization runs are a complex construct that run on bare-metal hosts. Our virtualization setup is constantly improving but still sometimes a bit fragile and requires close monitoring. This is what this tool was originally created for.</p>
 <p><img src="openqa-mon.png" alt="Terminal screenshot of openQA showing multiple jobs, one line by line."></p>
 <h1 id="installation">Installation</h1>
-<p><code>openqa-mon</code> is about to be packed via OBS (See my <a href="https://build.opensuse.org/package/show/home:ph03nix/openqa-mon">home project for openqa-mon</a>) but not yet fully there. In the meantime there are two ways, how you can install <code>openqa-mon</code>. The easiest is to use the provided binaries from the <a href="https://github.com/grisu48/openqa-mon/releases/tag/v0.12a">Alpha4 release on GitHub</a>, or you build it yourself</p>
+<p><code>openqa-mon</code> is about to be packaged via OBS (See my <a href="https://build.opensuse.org/package/show/home:ph03nix/openqa-mon">home project for openqa-mon</a>) but not yet fully there. In the meantime there are two ways, how you can install <code>openqa-mon</code>. The easiest is to use the provided binaries from the <a href="https://github.com/grisu48/openqa-mon/releases/tag/v0.12a">Alpha4 release on GitHub</a>, or you build it yourself</p>
 <h2 id="build-instructions">Build instructions</h2>
-<p><code>openqa-mon</code> is intentionally kept tidy, so this tool is happy with just a basic go compiler.</p>
+<p><code>openqa-mon</code> is intentionally kept tidy, so this tool is happy with just a basic go compiler and does not require any external libraries until now.</p>
 <pre><code>git clone https://github.com/grisu48/openqa-mon
 cd openqa-mon
 make openqa-mon
+./openqa-mon -h
 </code></pre>
-<p>This builds the binary <code>openqa-mon</code>, which then ends up in the parent directory. For systemwide access copy this file to <code>/usr/local/bin</code> (or similar).</p>
+<p>This builds the binary <code>openqa-mon</code>, which then ends up in the current directory. For systemwide access copy this file to <code>/usr/local/bin</code> (or similar).</p>
 <h1 id="usage">Usage</h1>
 <p>The most basic usage is the following:</p>
 <pre><code>openqa-mon [OPTIONS] JOBS
@@ -293,7 +294,7 @@ make openqa-mon
 <pre><code>openqa-mon -mfpc 30 http://duck-norris/tests/18038           # duck-norris is my own openQA
 </code></pre>
 <p><img src="openqa-mon-children.png" alt="openqa-mon showing a job and it&rsquo;s children"></p>
-<p>This is cool because of two things. First, despite that I only selected one single job ID, you see 9 jobs. Second, you see the <code>[DC]</code> in front of the children jobs. <code>[DC]</code> stands for directly chained children.</p>
+<p>This is cool because of two things. First, you see 9 jobs, but you have only selected one single job ID. This is because <code>openqa-mon</code> fetches the job and it&rsquo;s children. Second, you see the <code>[DC]</code> in front of the children jobs. <code>[DC]</code> stands for directly chained children.</p>
 <p>The example code above is what we use most of the times in practice for active monitoring of virtualization runs. Another way of using it is when you want to actively and closely monitor a verification run. That&rsquo;s why this utility has been developed in the first place!</p>
 <h2 id="advanced-usage">Advanced usage</h2>
 <p>For more program parameters run <code>openqa-mon -h</code> or consult the man page (when installing from OBS). <code>openqa-mon -h</code> lists a complete description of the available program arguments.</p>
@@ -310,8 +311,10 @@ openqa-mon -mfc 10 https://openqa.opensuse.org/tests/1644699 http://duck-norris/
 <p><code>-mfbc 10</code> is my most commonly used parameter set. It means I want to monitor <code>-m</code> the jobs, i.e. enable bell and desktop notifications, follow the jobs <code>-f</code> and refresh the job list every ten seconds <code>-c 10</code>.</p>
 <h1 id="tldr">TL;DR</h1>
 <ul>
-<li><code>openqa-mon</code> actively monitors your openqa jobs and notifies you about job changes</li>
+<li><a href="https://github.com/grisu48/openqa-mon"><code>openqa-mon</code></a> actively monitors your openqa jobs and notifies you about job changes</li>
 <li>Use this tool to babysit jobs, like complex test cases or verification runs</li>
+<li>Install: Use the pre-compiled binaries in <a href="https://github.com/grisu48/openqa-mon/releases">releases</a> or build it yourself (easy)</li>
+<li>Packages via OBS will come soon (<a href="https://build.opensuse.org/package/show/home:ph03nix/openqa-mon">preliminary project</a>)</li>
 </ul>
 <p>Usage example which is probably most commonly used:</p>
 <pre><code>openqa-mon -mfc 10 https://openqa.opensuse.org/tests/1644699 1644705+2 1644720..1644725
