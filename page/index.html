@@ -7,8 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Background bash commands - openQA bites</title>
-  <meta name="description" content="This post describes the caveats and correct handling of the bash background operator within openQA.">
+  <title>Pages - openQA bites</title>
   <meta name="author" content="phoenix"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -29,64 +28,14 @@
   
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@id": "https:\/\/openQA-Bites.github.io\/",
-          "name": "home"
-        }
-    },{
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@id": "https:\/\/openQA-Bites.github.io\/posts\/2021-02-04-background-scripts\/",
-          "name": "Background bash commands"
-        }
-    }]
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "author": {
-    "name" : "phoenix"
-  },
-  "headline": "Background bash commands",
-  "description" : "This post describes the caveats and correct handling of the bash background operator within openQA.",
-  "inLanguage" : "en",
-  "wordCount":  534 ,
-  "datePublished" : "2021-02-04T14:50:02",
-  "dateModified" : "2021-02-04T14:50:02",
-  "image" : "https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png",
-  "keywords" : [ "Scripting" ],
-  "mainEntityOfPage" : "https:\/\/openQA-Bites.github.io\/posts\/2021-02-04-background-scripts\/",
-  "publisher" : {
-    "@type": "Organization",
-    "name" : "https:\/\/openQA-Bites.github.io\/",
-    "logo" : {
-        "@type" : "ImageObject",
-        "url" : "https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png",
-        "height" :  60 ,
-        "width" :  60
-    }
-  }
-}
-</script>
 
-<meta property="og:title" content="Background bash commands" />
-<meta property="og:description" content="This post describes the caveats and correct handling of the bash background operator within openQA.">
+<meta property="og:title" content="Pages" />
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png" />
-<meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-02-04-background-scripts/" />
+<meta property="og:url" content="https://openQA-Bites.github.io/page/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="openQA bites" />
 
-  <meta name="twitter:title" content="Background bash commands" />
-  <meta name="twitter:description" content="This post describes the caveats and correct handling of the bash background operator within openQA.">
+  <meta name="twitter:title" content="Pages" />
   <meta name="twitter:image" content="https://openQA-Bites.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://openQA-Bites.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -115,12 +64,6 @@
 
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav navbar-right">
-        
-          
-            <li>
-              <a title="About" href="https://openQA-Bites.github.io/about/">About</a>
-            </li>
-          
         
 
         
@@ -210,33 +153,14 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-heading">
+            <div class="page-heading">
               
-                <h1>Background bash commands</h1>
-              
-              
+                <h1>Pages</h1>
               
               
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on February 4, 2021
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;534&nbsp;words
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
-    
-  
-  
-</span>
-
-
+                <hr class="small">
+              
+              
               
             </div>
           </div>
@@ -247,154 +171,69 @@
 
 
     
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p>Most of the openQA test cases run command sequentially. One command nicely after the next one. But in some cases it can be useful, to run a handful of commands in parallel and then wait for them to finish. Here we are covering the caveats of using the bash background operator <code>&amp;</code> in openQA.</p>
-<p>The TL;DR is at the end of the post</p>
-<h1 id="usage-example">Usage example</h1>
-<p>For instance, in virtualization testing, we install a handful of virtual machines in parallel via ``virt-install`:</p>
-<pre><code>assert_script_run('( virt-install --os-variant sles12sp3 --name sles12sp3 ... &gt;&gt; ~/virt-install_sles12sp3.txt 2&gt;&amp;1 &amp;)');
-assert_script_run('( virt-install --os-variant sles12sp4 --name sles12sp4 ... &gt;&gt; ~/virt-install_sles12sp4.txt 2&gt;&amp;1 &amp;)');
-assert_script_run('( virt-install --os-variant sles12sp5 --name sles12sp5 ... &gt;&gt; ~/virt-install_sles12sp5.txt 2&gt;&amp;1 &amp;)');
-</code></pre>
-<p>The general problem is, that you would like to run a set of bash commands in parallel, and wait for all of them to complete. In terms of code, you would like to do the following:</p>
-<pre><code>$ sleep 30 &amp;         # or another command that takes some time
-$ sleep 30 &amp;
-$ sleep 30 &amp;
-$ sleep 30 &amp;
-$ sleep 30 &amp;
-$ wait
-</code></pre>
-<p>Unfortunately enclosing those comments by a simple <code>assert_script_run</code> will not work, because of the handling with the serial terminal.</p>
-<pre><code>assert_script_run('sleep 30 &amp;');       # will result in a bash syntax error
-</code></pre>
-<p>The problem is, that openqa adds something like <code>; echo ~59bn-\$?-&quot;</code> at the end of the command, resulting in</p>
-<pre><code>sleep 30 &amp; ; echo ~59bn-\$?-
-</code></pre>
-<p>Now, <code>&amp;</code> and <code>;</code> are both terminators in bash resulting in an empty command between those two&rsquo;s which is not allowed. A quick fix is to add <code>true</code> in between those twos:</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');  # OK!
-</code></pre>
-<h1 id="enclosing-within-brackets-is-a-bad-idea">Enclosing within brackets is a bad idea</h1>
-<p>Another often seen solution is to enclose the commands between brackets:</p>
-<pre><code>assert_script_run('(sleep 30 &amp; )');  # don't do that!
-</code></pre>
-<p>This is fine, unless you need to interact with your background jobs. The reason is, that the commands between the brackets are not available in the outside context. This means, bash does not keep track of those processes, so that a subsequent <code>wait</code> will not wait for those. This can be seen in the following example</p>
-<pre><code>$ (sleep 30 &amp; ); wait            # will not wait for sleep, terminates immediately
-$ (sleep 30 &amp; ); jobs            # sleep is not visible
-</code></pre>
-<p>You can see, that the <code>sleep</code> command is not accessible in the context outside of the brackets. <code>wait</code> terminates immediately and <code>sleep</code> does not appear as a job in <code>jobs</code>. The correct way would be to omit the brackets and the semicolon:</p>
-<pre><code>$ sleep 30 &amp; wait
-[1] 12015
-
-$ sleep 30 &amp; jobs
-[1] 12038
-[1]+  Running                 sleep 30 &amp;
-</code></pre>
-<p>So, back to our starting point, if you enclose the commands in brackets, a subsequent <code>wait</code> will not work and this is why I believe that enclosing bash commands between brackets is a bad idea:</p>
-<pre><code>assert_script_run('(sleep 30 &amp; )');
-assert_script_run('wait');               # Will NOT wait for the sleep above!
-</code></pre>
-<p>The correct solution would be to add a <code>true</code> at the end of the <code>sleep</code> command</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');
-assert_script_run('wait');               # this works
-</code></pre>
-<h1 id="tldr">TL;DR</h1>
-<p>The correct way of running bash commands in the background is</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');
-assert_script_run('sleep 30 &amp; true');
-assert_script_run('wait');
-</code></pre>
-
-
+  <div class="container" role="main">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
-          <div class="blog-tags">
-            
-              <a href="https://openQA-Bites.github.io//tags/scripting/">Scripting</a>&nbsp;
-            
-          </div>
-        
-
-        
-            <hr/>
-            <section id="social-share">
-              <div class="list-inline footer-links">
-                
-
-<div class="share-box" aria-hidden="true">
-    <ul class="share">
-      
-      <li>
-        <a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;text=Background%20bash%20commands&amp;via=" target="_blank" title="Share on Twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f" target="_blank" title="Share on Facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;title=Background%20bash%20commands" target="_blank" title="Share on Reddit">
-          <i class="fab fa-reddit"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;title=Background%20bash%20commands" target="_blank" title="Share on LinkedIn">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;title=Background%20bash%20commands" target="_blank" title="Share on StumbleUpon">
-          <i class="fab fa-stumbleupon"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-04-background-scripts%2f&amp;description=Background%20bash%20commands" target="_blank" title="Share on Pinterest">
-          <i class="fab fa-pinterest"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-  
-
-              </div>
-            </section>
-        
-
-        
-      </article>
-
-      
-        <ul class="pager blog-pager">
+        <div class="posts-list">
           
+            <article class="post-preview">
+    <a href="https://openQA-Bites.github.io/page/about/">
+        <h2 class="post-title">about</h2>
+        
+        
+        
+    </a>
+
+    <p class="post-meta">
+        <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 25, 2021
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;125&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
+    
+  
+  
+</span>
+
+
+    </p>
+    <div class="post-entry">
+        
+            openQA bites is a blog about tutorials, insights and love stories from a humble openQA developer. Its aim is to provide small and biteable posts about typical usage issues that every openQA dev encounters and atypical corner-cases that are worth to be writing down somewhere.
+            <a href="https://openQA-Bites.github.io/page/about/" class="post-read-more">[Read More]</a>
+        
+    </div>
+
+    
+
+</article>
+
           
-            <li class="next">
-              <a href="https://openQA-Bites.github.io/posts/2021-02-10-needles/" data-toggle="tooltip" data-placement="top" title="What are Needles">Next Post &rarr;</a>
-            </li>
-          
-        </ul>
-      
-
-
-      
-
+        </div>
+        
+      </div>
     </div>
   </div>
-</div>
 
       
+    <div class="page-meta">
+  
+  
+  
+</div>
+
+
+  
 <footer>
   <div class="container">
     <div class="row">
@@ -443,7 +282,7 @@ assert_script_run('wait');
               </li>
           
           <li>
-            <a href="" title="RSS">
+            <a href="https://openQA-Bites.github.io/page/index.xml" title="RSS">
               <span class="fa-stack fa-lg">
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
