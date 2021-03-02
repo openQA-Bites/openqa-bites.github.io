@@ -59,7 +59,7 @@
   "headline": "Background bash commands",
   "description" : "This post describes the caveats and correct handling of the bash background operator within openQA.",
   "inLanguage" : "en",
-  "wordCount":  534 ,
+  "wordCount":  855 ,
   "datePublished" : "2021-02-04T14:50:02",
   "dateModified" : "2021-02-04T14:50:02",
   "image" : "https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png",
@@ -225,10 +225,10 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 4, 2021
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;534&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;855&nbsp;words
   
   
     
@@ -254,7 +254,7 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>Most of the openQA test cases run command sequentially. One command nicely after the next one. But in some cases it can be useful, to run a handful of commands in parallel and then wait for them to finish. Here we are covering the caveats of using the bash background operator <code>&amp;</code> in openQA.</p>
-<p>The TL;DR is at the end of the post</p>
+<p>A TL;DR is at the end of the post.</p>
 <h1 id="usage-example">Usage example</h1>
 <p>For instance, in virtualization testing, we install a handful of virtual machines in parallel via ``virt-install`:</p>
 <pre><code>assert_script_run('( virt-install --os-variant sles12sp3 --name sles12sp3 ... &gt;&gt; ~/virt-install_sles12sp3.txt 2&gt;&amp;1 &amp;)');
@@ -298,16 +298,33 @@ $ sleep 30 &amp; jobs
 <pre><code>assert_script_run('(sleep 30 &amp; )');
 assert_script_run('wait');               # Will NOT wait for the sleep above!
 </code></pre>
-<p>The correct solution would be to add a <code>true</code> at the end of the <code>sleep</code> command</p>
+<p>One possible solution would be to add a <code>true</code> at the end of the <code>sleep</code> command:</p>
 <pre><code>assert_script_run('sleep 30 &amp; true');
-assert_script_run('wait');               # this works
+assert_script_run('wait');               # this would works
 </code></pre>
+<p>While thous would work, it is not really wise to use <code>assert_script_run</code> or <code>script_run</code> for background jobs. Both routines do much more than just running commands, and they might get confused by race conditions in the output or by the return value. Currently the suggested way is to use <code>type_string</code> for the background job:</p>
+<pre><code>type_string(&quot;sleep 30 &amp;\n&quot;);
+</code></pre>
+<p>And <code>script_run</code> for the <code>wait</code>. The reason to use here <code>script_run</code> is that we do not only want to type <code>wait</code>, but make openQA actually wait for that <code>wait</code> to complete</p>
+<pre><code>script_run('wait');       # No &quot;\n&quot; here anymore, don't get confused :-)
+</code></pre>
+<h2 id="why-i-stick-to-script_run-as-long-as-possible">Why I stick to <code>script_run</code> as long as possible</h2>
+<p>You see in the code segments above, that in <code>type_string</code> you have to add a &ldquo;\n&rdquo; at the end of the command. Plus, that one needs to be enclosed within <code>&quot;&quot;</code> and not <code>''</code> because Perl. Since I&rsquo;m not doing background jobs so often, that this becomes a routine, this will be a source of error and frustration every time I have to re-do it.</p>
+<p>If find this confusing and because normally it&rsquo;s already hard enough to figure out the other reasons why your test is failing, I&rsquo;m gonna stick to <code>script_run</code>.</p>
 <h1 id="tldr">TL;DR</h1>
 <p>The correct way of running bash commands in the background is</p>
-<pre><code>assert_script_run('sleep 30 &amp; true');
-assert_script_run('sleep 30 &amp; true');
-assert_script_run('wait');
+<pre><code>type_string(&quot;sleep 30 &amp;\n&quot;);     # Note: \n requires &quot;&quot; not ''
+type_string(&quot;sleep 30 &amp;\n&quot;);
+script_run('wait');              # Don't use \n here!
 </code></pre>
+<p>However, I find this confusing because you need to remember that <code>type_string</code> requires <code>&quot;&quot;</code> because of the required newline at the end. Also, don&rsquo;t use <code>type_string</code> for the <code>wait</code>, otherwise openQA will go on without waiting for the jobs.
+This is why I&rsquo;m gonna stick to <code>script_run</code> as long as possible:</p>
+<pre><code>script_run('sleep 30 &amp; true');     # works with ''
+script_run(&quot;sleep 30 &amp; true&quot;);     # works with &quot;&quot;
+script_run('wait');                # no confusion with &quot;\n&quot; in this example
+</code></pre>
+<p>For this case, <code>script_run</code> is one unified command that behaves in the same way for all three and without those caveats.
+I&rsquo;m pretty sure, a lot of people will disagree with this approach though :-)</p>
 
 
         
