@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>What are Needles - openQA bites</title>
-  <meta name="description" content="In this blog post we are going to give you the easiest introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.">
+  <title>Active monitoring of openQA jobs - openQA bites</title>
+  <meta name="description" content="openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.">
   <meta name="author" content="phoenix"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -44,8 +44,8 @@
         "@type": "ListItem",
         "position": 3,
         "item": {
-          "@id": "https:\/\/openQA-Bites.github.io\/posts\/2021-02-10-needles\/",
-          "name": "What are needles"
+          "@id": "https:\/\/openQA-Bites.github.io\/posts\/2021-02-25-openqa-mon\/",
+          "name": "Active monitoring of open q a jobs"
         }
     }]
 }
@@ -56,15 +56,15 @@
   "author": {
     "name" : "phoenix"
   },
-  "headline": "What are Needles",
-  "description" : "In this blog post we are going to give you the easiest introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.",
+  "headline": "Active monitoring of openQA jobs",
+  "description" : "openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.",
   "inLanguage" : "en",
-  "wordCount":  938 ,
-  "datePublished" : "2021-02-10T09:57:30",
-  "dateModified" : "2021-02-10T09:57:30",
+  "wordCount":  951 ,
+  "datePublished" : "2021-02-25T14:54:57",
+  "dateModified" : "2021-02-25T14:54:57",
   "image" : "https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png",
-  "keywords" : [ "Needles" ],
-  "mainEntityOfPage" : "https:\/\/openQA-Bites.github.io\/posts\/2021-02-10-needles\/",
+  "keywords" : [ "tools, openqa-mon, cli" ],
+  "mainEntityOfPage" : "https:\/\/openQA-Bites.github.io\/posts\/2021-02-25-openqa-mon\/",
   "publisher" : {
     "@type": "Organization",
     "name" : "https:\/\/openQA-Bites.github.io\/",
@@ -78,15 +78,15 @@
 }
 </script>
 
-<meta property="og:title" content="What are Needles" />
-<meta property="og:description" content="In this blog post we are going to give you the easiest introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use and easy-to-understand introduction into this topic alone.">
+<meta property="og:title" content="Active monitoring of openQA jobs" />
+<meta property="og:description" content="openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png" />
-<meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-02-10-needles/" />
+<meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-02-25-openqa-mon/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="openQA bites" />
 
-  <meta name="twitter:title" content="What are Needles" />
-  <meta name="twitter:description" content="In this blog post we are going to give you the easiest introduction to what needles are and how you can use them. While there are many good talks and documentation on needles out there, it took me …">
+  <meta name="twitter:title" content="Active monitoring of openQA jobs" />
+  <meta name="twitter:description" content="openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.">
   <meta name="twitter:image" content="https://openQA-Bites.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@grisu48" />
@@ -214,7 +214,7 @@
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
               
-                <h1>What are Needles</h1>
+                <h1>Active monitoring of openQA jobs</h1>
               
               
               
@@ -222,13 +222,13 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on February 10, 2021
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 25, 2021
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;938&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;951&nbsp;words
   
   
     
@@ -253,103 +253,96 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>In this blog post we are going to give you the easiest introduction to what needles are and how you can use them.
-While there are many good talks and documentation on needles out there, it took me longer than it should have to find a easy-to-use
-and easy-to-understand introduction into this topic alone.
-This blog post should fill this gap.</p>
-<h1 id="what-is-a-needle">What is a needle?</h1>
-<p>A needle is just a screenshot plus a definition, which part of that screenshot must match. Each of those parts also has a matching-parameter which determines, how good that region must match with the given prototype. Needles are identified by <code>tags</code>.</p>
-<p>Let&rsquo;s break this description down top-to-bottom. This is a needle:</p>
-<p><img src="Needle.png" alt="Screenshot of GIMP with three Green boxes. One at the Title bar, one at the File menu and one at the GIMP logo in the drawing area"></p>
-<p>Don&rsquo;t get confused by the singular. A needle can consist of multiple regions and is still called &ldquo;a needle&rdquo;.</p>
-<p>Now let&rsquo;s look again at the figure above: You see a screenshot plus some green regions. When openQA looks for this needle it looks only at the green regions and ignores the rest. In order for the needle to match, each region needs to be present up to a given precision, which is defined via the <code>match</code> parameter.</p>
-<p>And that&rsquo;s it. Exactly that is a needle. It is just a screenshot plus a json file which defines, what parts of that screenshot must match to what precision.
-A needle also can handle mouse clicks, this will be covered later in this post.</p>
-<h2 id="what-are-needles-used-for">What are needles used for?</h2>
-<p>openQA shines when it comes to GUI testing. It is able to interact with a machine (virtual or bare-metal) without the need of accessibility interfaces or an additional toolkit, nor does it need to install anything on the system under test. It does so, by matching needles to the visual output of that machine and/or perform commands within a terminal.</p>
-<p>Needles are used here to match the current screen output of a machine to a given predefined screenshot. For instance, when openQA tests the installation of a ISO image, it walks through the installation process screen by screen, matching each screen output of the machine against well-known needles and handling mouse clicks and typing events. Needles are just &ldquo;look for XY&rdquo; directives for openQA in order to validate, if the given screen is valid or not.
-openQA can do much more, but this is beyond the scope of this article.</p>
-<h2 id="why-are-needles-identified-by-tags">Why are needles identified by &ldquo;tags&rdquo;?</h2>
-<p>Needles are identified with <code>tags</code> and multiple needles can match the same <code>tag</code>. This is needed because openQA is able to test different versions and flavors of one distribution at the same time.
-A needle which should match for instance Firefox on gnome might looks slightly different on openSUSE Leap than on Tumbleweed. Because the underlying test script is the same, but the screen might looks slightly different, there is a need to support multiple needles with the same <code>tag</code>.</p>
-<p>Another reason is that a update for instance of the font might change the appearance of a Needle just enough, that the old one does not match anymore.
-This is a well-known issue and the reason for some extensive &ldquo;re-needling&rdquo; some times. Font or logo changes are good examples of when this is needed.</p>
-<p>Old needles are typically not deleted but kept, in the case one needs to re-run those test runs for whatever reason.</p>
-<h2 id="needles-and-mouse-click-events">Needles and mouse-click events</h2>
-<p>Needles are the closest part to the GUI in openQA, which makes them also the most suitable place for handling mouse-click events. Each needle can define a region, where openQA should click when that needle is matched. Don&rsquo;t worry, mouse-clicks are handled only, if the underlying test script tells it to do so (by using e.g. <code>assert_and_click</code> instead of <code>assert_screen</code>).</p>
-<h2 id="perspective-from-the-raw-needles-files">Perspective from the raw needles files</h2>
-<p>Another approach of trying to understand needles is to look how needles are stored on the disk. The needles for openSUSE for instance are found on <a href="https://github.com/os-autoinst/os-autoinst-needles-opensuse">github.com/os-autoinst/os-autoinst-needles-opensuse</a>.</p>
-<p>Let&rsquo;s look again at the example needle from above. This needle consists of two files:</p>
+        <p><a href="https://github.com/grisu48/openqa-mon"><code>openqa-mon</code></a> is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.g. for verification runs.</p>
+<p><img src="openqa-mon-demo.gif" alt="Demo screencast showing jobs poping up and changing their state"></p>
+<h2 id="example">Example</h2>
+<p>We have been using this tool for half a year already to monitor our virtualization runs. Virtualization runs are a complex construct that run on bare-metal hosts. Our virtualization setup is constantly improving but still sometimes a bit fragile and requires close monitoring. This is what this tool was originally created for.</p>
+<p><img src="openqa-mon.png" alt="Terminal screenshot of openQA showing multiple jobs, one line by line."></p>
+<h1 id="installation">Installation</h1>
+<p><a href="https://github.com/grisu48/openqa-mon"><code>openqa-mon</code></a> is packaged in my <a href="https://build.opensuse.org/project/show/home:ph03nix:tools">tools project on OBS</a>. The easiest way to install this on openSUSE is to install it via <a href="https://software.opensuse.org/package/openqa-mon">software.opensuse.org</a> and follow the instructions there. With this approach you will also get updates via your package manager.
+For Tumbleweed e.g. the following should work for you:</p>
+<pre><code>zypper addrepo https://download.opensuse.org/repositories/home:ph03nix:tools/openSUSE_Tumbleweed/home:ph03nix:tools.repo
+zypper refresh
+zypper install openqa-mon
+</code></pre>
+<p>I&rsquo;m currently only building for openSUSE/SLE. For other distributions you either use the released binaries from the <a href="https://github.com/grisu48/openqa-mon/releases">release page on GitHub</a> or you follow the following manual build instructions (easy).</p>
+<h2 id="building-it-yourself">Building it yourself</h2>
+<p>In a nutshell:</p>
+<pre><code>make requirements     # install requirements
+make
+sudo make install     # install the binaries to /usr/local/bin
+make install ~/bin    # install the binaries to bin in your home directory
+</code></pre>
+<p><code>make requirements</code> downloads all required libraries via <code>go get</code>. The <code>make</code> command builds the program.</p>
+<h1 id="usage">Usage</h1>
+<p>The usage is the following:</p>
+<pre><code>openqa-mon [OPTIONS] JOBS
+</code></pre>
+<p><code>JOBS</code> are the jobs you want to monitor via their URL. <code>OPTIONS</code> are optional but useful program arguments that let you control how <code>openqa-mon</code> behaves. The best way to dive into the usage is by showing how we use it.</p>
+<h2 id="example-usage">Example usage</h2>
+<p>Let&rsquo;s assume I want to monitor the following jobs from today&rsquo;s Tumbleweed runs:</p>
 <ul>
-<li><a href="flatpak-gimp-launched-20210210.png">flatpak-gimp-launched-20210210.png</a> - The screenshot</li>
-<li><a href="flatpak-gimp-launched-20210210.json">flatpak-gimp-launched-20210210.json</a> - The definition file</li>
+<li><code>RAID0_gpt</code> - <a href="https://openqa.opensuse.org/tests/1644699">https://openqa.opensuse.org/tests/1644699</a></li>
+<li><code>extra_tests_filesystem</code> - <a href="https://openqa.opensuse.org/tests/1644649">https://openqa.opensuse.org/tests/1644649</a></li>
+<li><code>wireguard_client</code> - <a href="https://openqa.opensuse.org/tests/1644850">https://openqa.opensuse.org/tests/1644850</a></li>
+<li><code>wireguard_server</code> - <a href="https://openqa.opensuse.org/tests/1644786">https://openqa.opensuse.org/tests/1644786</a></li>
 </ul>
-<p>The screenshot is really just the screenshot as png file. The definition file is a <code>json</code> file that looks like the following:</p>
-<pre><code>{
-  &quot;area&quot;: [
-    {
-      &quot;xpos&quot;: 391,
-      &quot;ypos&quot;: 34,
-      &quot;width&quot;: 246,
-      &quot;height&quot;: 25,
-      &quot;type&quot;: &quot;match&quot;,
-      &quot;match&quot;: 90
-    },
-    {
-      &quot;xpos&quot;: 4,
-      &quot;ypos&quot;: 69,
-      &quot;width&quot;: 28,
-      &quot;height&quot;: 19,
-      &quot;type&quot;: &quot;match&quot;,
-      &quot;match&quot;: 90
-    },
-    {
-      &quot;xpos&quot;: 276,
-      &quot;ypos&quot;: 627,
-      &quot;width&quot;: 183,
-      &quot;height&quot;: 119,
-      &quot;type&quot;: &quot;match&quot;,
-      &quot;match&quot;: 85
-    },
-    {
-      &quot;xpos&quot;: 998,
-      &quot;ypos&quot;: 37,
-      &quot;width&quot;: 16,
-      &quot;height&quot;: 17,
-      &quot;type&quot;: &quot;match&quot;,
-      &quot;click_point&quot;: {
-        &quot;xpos&quot;: 8,
-        &quot;ypos&quot;: 8.5
-      }
-    }
-  ],
-  &quot;properties&quot;: [],
-  &quot;tags&quot;: [
-    &quot;flatpak-gimp&quot;
-  ]
-}
+<p>I want to get notifications when a job changes its status (<code>-n</code>) and
+<code>openqa-mon</code> should follow the job, i.e. show me the cloned job if present (<code>-f</code>). The later is useful to monitor restarted jobs. In addition, I want <code>openqa-mon</code> to update the job status every 10 seconds (<code>--continuous 10</code>). Then the command looks like the following:</p>
+<pre><code> openqa-mon -nf --continuous 10 https://openqa.opensuse.org/tests/1644699 1644649 1644850 1644786
 </code></pre>
-<p>We can see here, that it defines three rectangular areas, defined with via their upper-left position (<code>xpos</code>, <code>ypos</code>) and their <code>width</code> and <code>height</code>. Those match exactly the green boxes in the example figure above. This needle has a single tag <code>flatpak-gimp</code>. In addition it also has a <code>click_point</code> in one of the areas, which defines the position where a mouseclick would happen, if desired.</p>
-<p>If you would like to match for this needle, you could do it as follows.</p>
-<pre><code># only match the given needle
-assert_screen('flatpak-GIMP');
+<p>Mind how we only needed to add job numbers and not the full URL after one job has been specifying the instance. Of course, you are free to still use the full URL.</p>
+<p><img src="openqa-mon-example.png" alt="Output of openqa-mon when for the example above."></p>
+<p>Now every 10 seconds, <code>openqa-mon</code> fetches the current job status and when the job changes its status then you will get a desktop notification. Awesome!</p>
+<h2 id="monitoring-a-job-and-its-children">Monitoring a job and its children</h2>
+<p>Our virtualization runs look like the following:</p>
+<p><img src="virt-runs.png" alt="Dependency graph of a virtualization run"></p>
+<p><code>qam-kvm-install</code> is the step that setups up the Hypervisor, followed by a set of individual test cases. If we want to monitor this runs it&rsquo;s cumbersome to define all job IDs. This is why we came up with the <code>-p</code> parameter (or <code>--hierarchy</code>) for showing the job hierarchy. This means, <code>openqa-mon</code> will automatically also add the children of the defined jobs.</p>
+<pre><code>openqa-mon -mfpc 30 http://duck-norris/tests/18038           # duck-norris is my own openQA
+</code></pre>
+<p><img src="openqa-mon-children.png" alt="openqa-mon showing a job and it&rsquo;s children"></p>
+<p>This is cool because of two things. First, you see 9 jobs, but you have only selected one single job ID. This is because <code>openqa-mon</code> fetches the job and it&rsquo;s children. Second, you see the <code>[DC]</code> in front of the children jobs. <code>[DC]</code> stands for directly chained children.</p>
+<p>The example code above is what we use most of the times in practice for active monitoring of virtualization runs. Another way of using it is when you want to actively and closely monitor a verification run. That&rsquo;s why this utility has been developed in the first place!</p>
+<h2 id="advanced-usage">Advanced usage</h2>
+<p>For more program parameters run <code>openqa-mon -h</code> or consult the man page (when installing from OBS). <code>openqa-mon -h</code> lists a complete description of the available program arguments.</p>
+<p>In addition, I want to show you two nice gimmicks, that can make your life with <code>openqa-mon</code> easier. <code>openqa-mon</code> also supports defining jobs by range. Look at the following two examples:</p>
+<pre><code>openqa-mon -mfc 10 https://openqa.opensuse.org/tests/1644699+2
 
-# match the given needle and perform a mouse-click on the defined coordinates
-assert_and_click('flatpak-GIMP');
+openqa-mon -mfc 10 https://openqa.opensuse.org/tests/1644699..1644705
+
+openqa-mon -mfc 10 https://openqa.opensuse.org/tests/1644699 http://duck-norris/tests/18038
 </code></pre>
-<p>How to use needles when writing openQA tests will be covered in a different blog post.</p>
+<p>The first line monitors the jobs 1644699 1644700 and 1644701. When the job ID contains a <code>+</code>, <code>openqa-mon</code> interprets it as &ldquo;the given job plus the following numbers <code>n</code>&rdquo;. So here it means, the job itself plus the next two ID&rsquo;s as well.</p>
+<p>The second line allows you to define a custom job range. This is very similar to the <code>+</code>. Here, <code>openqa-mon</code> will monitor all jobs from 1644699 to (inclusive) 1644705. This means, <code>openqa-mon</code> will monitor 1644699, 1644700, 1644701, 1644702, 1644703, 1644704 and 1644705.</p>
+<p>The third line shows that you can monitor jobs from multiple instances at the same time. This is sometimes necessary and useful to have in one terminal without using <code>tmux</code>, <code>terminator</code> or similar.</p>
+<p><code>-mfbc 10</code> is my most commonly used parameter set. It means I want to monitor <code>-m</code> the jobs, i.e. enable bell and desktop notifications, follow the jobs <code>-f</code> and refresh the job list every ten seconds <code>-c 10</code>.</p>
 <h1 id="tldr">TL;DR</h1>
 <ul>
-<li>A needle is a screenshot plus a definition, which part of that screenshot must match to which precision</li>
-<li>Needles are identified by <code>tags</code> and multiple needles can match a tag</li>
-<li>Among others, font and logo changes are often reason for &ldquo;re-needling&rdquo;, i.e. creating new needles because the old ones don&rsquo;t match any more</li>
+<li><a href="https://github.com/grisu48/openqa-mon"><code>openqa-mon</code></a> actively monitors your openqa jobs and notifies you about job changes</li>
+<li>Use this tool to babysit jobs, like complex test cases or verification runs</li>
+<li>Install: Use the pre-compiled binaries in <a href="https://github.com/grisu48/openqa-mon/releases">releases</a> or build it yourself (easy)</li>
+<li>Packages via OBS will come soon (<a href="https://build.opensuse.org/package/show/home:ph03nix/openqa-mon">preliminary project</a>)</li>
 </ul>
+<p>Usage example which is probably most commonly used:</p>
+<pre><code>openqa-mon -mfc 10 https://openqa.opensuse.org/tests/1644699 1644705+2 1644720..1644725
+           |                                         |       |         |
+           # -m  - Desktop &amp; bell notifications      |       |         # job range
+             -f  - Follow jobs (show restarted jobs) |       |
+             -c 10  - refresh every 10 seconds       |       # jobid plus next two jobs
+                                                     # Instance and single job id
+</code></pre>
+<p><code>openqa-mon</code> also supports jobs across different instances, e.g.</p>
+<pre><code>openqa-mon -mfc 10 https://openqa.opensuse.org/tests/1644699 http://duck-norris/tests/18038</code></pre>
 
 
         
           <div class="blog-tags">
             
-              <a href="https://openQA-Bites.github.io//tags/needles/">Needles</a>&nbsp;
+              <a href="https://openQA-Bites.github.io//tags/tools/">tools</a>&nbsp;
+            
+              <a href="https://openQA-Bites.github.io//tags/openqa-mon/">openqa-mon</a>&nbsp;
+            
+              <a href="https://openQA-Bites.github.io//tags/cli/">cli</a>&nbsp;
             
           </div>
         
@@ -364,42 +357,42 @@ assert_and_click('flatpak-GIMP');
     <ul class="share">
       
       <li>
-        <a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;text=What%20are%20Needles&amp;via=grisu48" target="_blank" title="Share on Twitter">
+        <a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-25-openqa-mon%2f&amp;text=Active%20monitoring%20of%20openQA%20jobs&amp;via=grisu48" target="_blank" title="Share on Twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f" target="_blank" title="Share on Facebook">
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-25-openqa-mon%2f" target="_blank" title="Share on Facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;title=What%20are%20Needles" target="_blank" title="Share on Reddit">
+        <a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-25-openqa-mon%2f&amp;title=Active%20monitoring%20of%20openQA%20jobs" target="_blank" title="Share on Reddit">
           <i class="fab fa-reddit"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;title=What%20are%20Needles" target="_blank" title="Share on LinkedIn">
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-25-openqa-mon%2f&amp;title=Active%20monitoring%20of%20openQA%20jobs" target="_blank" title="Share on LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;title=What%20are%20Needles" target="_blank" title="Share on StumbleUpon">
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-25-openqa-mon%2f&amp;title=Active%20monitoring%20of%20openQA%20jobs" target="_blank" title="Share on StumbleUpon">
           <i class="fab fa-stumbleupon"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-10-needles%2f&amp;description=What%20are%20Needles" target="_blank" title="Share on Pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-02-25-openqa-mon%2f&amp;description=Active%20monitoring%20of%20openQA%20jobs" target="_blank" title="Share on Pinterest">
           <i class="fab fa-pinterest"></i>
         </a>
       </li>
@@ -418,13 +411,9 @@ assert_and_click('flatpak-GIMP');
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://openQA-Bites.github.io/posts/2021-02-04-background-scripts/" data-toggle="tooltip" data-placement="top" title="Background bash commands">&larr; Previous Post</a>
+              <a href="https://openQA-Bites.github.io/posts/2021-02-10-needles/" data-toggle="tooltip" data-placement="top" title="What are Needles">&larr; Previous Post</a>
             </li>
           
-          
-            <li class="next">
-              <a href="https://openQA-Bites.github.io/posts/2021-02-25-openqa-mon/" data-toggle="tooltip" data-placement="top" title="Active monitoring of openQA jobs">Next Post &rarr;</a>
-            </li>
           
         </ul>
       

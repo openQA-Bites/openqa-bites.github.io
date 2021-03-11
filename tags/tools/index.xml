@@ -11,10 +11,10 @@
     <lastBuildDate>Thu, 25 Feb 2021 14:54:57 +0100</lastBuildDate><atom:link href="https://openQA-Bites.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Active monitoring of openQA jobs</title>
-      <link>https://openQA-Bites.github.io/posts/2021-02-25-openqa/</link>
+      <link>https://openQA-Bites.github.io/posts/2021-02-25-openqa-mon/</link>
       <pubDate>Thu, 25 Feb 2021 14:54:57 +0100</pubDate>
       <author>felix.niederwanger@suse.de (phoenix)</author>
-      <guid>https://openQA-Bites.github.io/posts/2021-02-25-openqa/</guid>
+      <guid>https://openQA-Bites.github.io/posts/2021-02-25-openqa-mon/</guid>
       <description>openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.</description>
     </item>
     
