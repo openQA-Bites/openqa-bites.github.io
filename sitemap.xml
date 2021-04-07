@@ -3,17 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://openQA-Bites.github.io/tags/bare-metal/</loc>
+    <lastmod>2021-04-07T16:06:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://openQA-Bites.github.io/categories/bare-metal/</loc>
+    <lastmod>2021-04-07T16:06:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://openQA-Bites.github.io/categories/</loc>
+    <lastmod>2021-04-07T16:06:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://openQA-Bites.github.io/tags/ipmi/</loc>
+    <lastmod>2021-04-07T16:06:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://openQA-Bites.github.io/posts/2021-04-07/</loc>
+    <lastmod>2021-04-07T16:06:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://openQA-Bites.github.io/</loc>
+    <lastmod>2021-04-07T16:06:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://openQA-Bites.github.io/posts/</loc>
+    <lastmod>2021-04-07T16:06:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://openQA-Bites.github.io/tags/</loc>
+    <lastmod>2021-04-07T16:06:48+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://openQA-Bites.github.io/about/</loc>
     <lastmod>2021-02-25T16:18:27+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://openQA-Bites.github.io/posts/2021-02-25-openqa-mon/</loc>
-    <lastmod>2021-02-25T14:54:57+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://openQA-Bites.github.io/categories/</loc>
     <lastmod>2021-02-25T14:54:57+01:00</lastmod>
   </url>
   
@@ -28,22 +63,7 @@
   </url>
   
   <url>
-    <loc>https://openQA-Bites.github.io/</loc>
-    <lastmod>2021-02-25T14:54:57+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://openQA-Bites.github.io/tags/openqa-mon/</loc>
-    <lastmod>2021-02-25T14:54:57+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://openQA-Bites.github.io/posts/</loc>
-    <lastmod>2021-02-25T14:54:57+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://openQA-Bites.github.io/tags/</loc>
     <lastmod>2021-02-25T14:54:57+01:00</lastmod>
   </url>
   
