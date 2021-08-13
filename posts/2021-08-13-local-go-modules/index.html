@@ -3,14 +3,21 @@
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Bare Metal - openQA bites</title>
+<title>Use local go modules - openQA bites</title>
+<meta name=description content="When dealing with go modules, sometimes it&rsquo;s handy to test some changes from a local repository instead of using the upstream one.
+Now, go programs are typically relying only on the upstream packages.">
 <meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
-<meta property="og:title" content="Bare Metal">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-08-13-local-go-modules\/","name":"Use local go modules"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Use local go modules","description":"When dealing with go modules, sometimes it\u0026rsquo;s handy to test some changes from a local repository instead of using the upstream one.\nNow, go programs are typically relying only on the upstream packages.","inLanguage":"en","wordCount":192,"datePublished":"2021-08-13T10:58:14","dateModified":"2021-08-13T10:58:14","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["go"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-08-13-local-go-modules\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
+<meta property="og:title" content="Use local go modules">
+<meta property="og:description" content="When dealing with go modules, sometimes it&rsquo;s handy to test some changes from a local repository instead of using the upstream one.
+Now, go programs are typically relying only on the upstream packages.">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png">
-<meta property="og:url" content="https://openQA-Bites.github.io/tags/bare-metal/">
+<meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-08-13-local-go-modules/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="openQA bites">
-<meta name=twitter:title content="Bare Metal">
+<meta name=twitter:title content="Use local go modules">
+<meta name=twitter:description content="When dealing with go modules, sometimes it&rsquo;s handy to test some changes from a local repository instead of using the upstream one.
+Now, go programs are typically relying only on the upstream …">
 <meta name=twitter:image content="https://openQA-Bites.github.io/img/avatar-icon.png">
 <meta name=twitter:card content="summary">
 <meta name=twitter:site content="@grisu48">
@@ -101,9 +108,14 @@
 <div class=container>
 <div class=row>
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<div class=tags-heading>
-<h1>Bare Metal</h1>
-<hr class=small>
+<div class=post-heading>
+<h1>Use local go modules</h1>
+<span class=post-meta>
+<i class="fas fa-calendar"></i>&nbsp;Posted on August 13, 2021
+&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;192&nbsp;words
+&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
+</span>
 </div>
 </div>
 </div>
@@ -113,29 +125,90 @@
 <div class=container role=main>
 <div class=row>
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<div class=posts-list>
-<article class=post-preview>
-<a href=https://openQA-Bites.github.io/posts/2021-04-07/>
-<h2 class=post-title>IPMI remote access on old machines</h2>
-</a>
-<p class=post-meta>
-<span class=post-meta>
-<i class="fas fa-calendar"></i>&nbsp;Posted on April 7, 2021
-&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;361&nbsp;words
-&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
-</span>
-</p>
-<div class=post-entry>
-This is a very short update post about getting the IPMI Remote Control Java Applet from horrible old system running on modern systems. This is an issue that haunted me for some time.
-<a href=https://openQA-Bites.github.io/posts/2021-04-07/ class=post-read-more>[Read More]</a>
-</div>
+<article role=main class=blog-post>
+<p>When dealing with go modules, sometimes it&rsquo;s handy to test some changes from a local repository instead of using the upstream one.</p>
+<p>Now, go programs are typically relying only on the upstream packages. Take the module file of <code>openqa-mon</code> as example:</p>
+<pre><code>module github.com/grisu48/openqa-mon
+
+go 1.11
+
+require (
+	github.com/BurntSushi/toml v0.3.1
+	github.com/grisu48/gopenqa v0.3.3
+	github.com/streadway/amqp v1.0.0
+)
+</code></pre>
+<p>When working on <code>openqa-mon</code>, I have to often also work on <a href=https://github.com/grisu48/gopenqa>gopenqa</a>, my underlying go library for accessing openQA - with an intentional horrible name ;-)
+Now, before pushing some testing changes online, I&rsquo;d like to see if they are compatible with my current state in openqa-mon. This is where the <code>replace</code> keyword comes in handy.</p>
+<p>Instead of relying on the upstream version, you can redirect go to look in a local directory for a certain module. See the syntax of the replace keyword</p>
+<pre><code>replace github.com/somedude/someproject =&gt; /path/to/local/repository
+</code></pre>
+<p>And here is a concrete example of how I use it</p>
+<pre><code>module github.com/grisu48/openqa-mon
+
+go 1.11
+
+require (
+    github.com/BurntSushi/toml v0.3.1
+    github.com/grisu48/gopenqa v0.4.1
+    github.com/streadway/amqp v1.0.0
+)
+
+replace github.com/grisu48/gopenqa =&gt; /home/phoenix/Software/gopenqa
+</code></pre>
+<p>Now instead of using the upstream version, the local repository get used and you can test/use your local changes. Cheers.</p>
+<h2 id=references>References</h2>
+<ul>
+<li><a href=https://golang.org/ref/mod#go-mod-file-replace>golang.org/ref/mod#go-mod-file-replace</a></li>
+</ul>
 <div class=blog-tags>
-<a href=https://openQA-Bites.github.io//tags/bare-metal/>Bare Metal</a>&nbsp;
-<a href=https://openQA-Bites.github.io//tags/ipmi/>IPMI</a>&nbsp;
+<a href=https://openQA-Bites.github.io//tags/go/>go</a>&nbsp;
 </div>
+<hr>
+<section id=social-share>
+<div class="list-inline footer-links">
+<div class=share-box aria-hidden=true>
+<ul class=share>
+<li>
+<a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-08-13-local-go-modules%2f&text=Use%20local%20go%20modules&via=grisu48" target=_blank title="Share on Twitter">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li>
+<a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-08-13-local-go-modules%2f" target=_blank title="Share on Facebook">
+<i class="fab fa-facebook"></i>
+</a>
+</li>
+<li>
+<a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-08-13-local-go-modules%2f&title=Use%20local%20go%20modules" target=_blank title="Share on Reddit">
+<i class="fab fa-reddit"></i>
+</a>
+</li>
+<li>
+<a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-08-13-local-go-modules%2f&title=Use%20local%20go%20modules" target=_blank title="Share on LinkedIn">
+<i class="fab fa-linkedin"></i>
+</a>
+</li>
+<li>
+<a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-08-13-local-go-modules%2f&title=Use%20local%20go%20modules" target=_blank title="Share on StumbleUpon">
+<i class="fab fa-stumbleupon"></i>
+</a>
+</li>
+<li>
+<a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-08-13-local-go-modules%2f&description=Use%20local%20go%20modules" target=_blank title="Share on Pinterest">
+<i class="fab fa-pinterest"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</section>
 </article>
-</div>
+<ul class="pager blog-pager">
+<li class=previous>
+<a href=https://openQA-Bites.github.io/posts/2021-07-16-pasta/ data-toggle=tooltip data-placement=top title="pasta - stupid simple pastebin service">&larr; Previous Post</a>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -193,7 +266,7 @@ This is a very short update post about getting the IPMI Remote Control Java Appl
 </a>
 </li>
 <li>
-<a href=https://openQA-Bites.github.io/tags/bare-metal/index.xml title=RSS>
+<a href title=RSS>
 <span class="fa-stack fa-lg">
 <i class="fas fa-circle fa-stack-2x"></i>
 <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
