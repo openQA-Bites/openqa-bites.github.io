@@ -6,7 +6,7 @@
 <title>Playing with the openqa API - openQA bites</title>
 <meta name=description content="Today we are going to play a bit around with the amazing API that every openQA instance provides. The aim of this tutorial is to show how the API can be accessed using a simple language like python.">
 <meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-09-23-api-playing\/","name":"Playing with the openqa API"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Playing with the openqa API","description":"Today we are going to play a bit around with the amazing API that every openQA instance provides. The aim of this tutorial is to show how the API can be accessed using a simple language like python.","inLanguage":"en","wordCount":1692,"datePublished":"2021-09-24T08:00:00","dateModified":"2021-09-24T08:00:00","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["openqa, api, scripting"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-09-23-api-playing\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-09-23-api-playing\/","name":"Playing with the openqa API"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Playing with the openqa API","description":"Today we are going to play a bit around with the amazing API that every openQA instance provides. The aim of this tutorial is to show how the API can be accessed using a simple language like python.","inLanguage":"en","wordCount":1692,"datePublished":"2021-09-24T08:00:00","dateModified":"2021-09-24T08:00:00","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["openqa, api, scripting, python"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-09-23-api-playing\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
 <meta property="og:title" content="Playing with the openqa API">
 <meta property="og:description" content="Today we are going to play a bit around with the amazing API that every openQA instance provides. The aim of this tutorial is to show how the API can be accessed using a simple language like python.">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png">
@@ -20,7 +20,7 @@
 <meta name=twitter:site content="@grisu48">
 <meta name=twitter:creator content="@grisu48">
 <link href=https://openQA-Bites.github.io/img/favicon.ico rel=icon type=image/x-icon>
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.3">
 <link rel=alternate href=https://openQA-Bites.github.io/index.xml type=application/rss+xml title="openQA bites"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous>
 <link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous>
 <link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://openQA-Bites.github.io/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
@@ -343,6 +343,7 @@ print(client<span style=color:#f92672>.</span>openqa_request(<span style=color:#
 <a href=https://openQA-Bites.github.io//tags/openqa/>openqa</a>&nbsp;
 <a href=https://openQA-Bites.github.io//tags/api/>api</a>&nbsp;
 <a href=https://openQA-Bites.github.io//tags/scripting/>scripting</a>&nbsp;
+<a href=https://openQA-Bites.github.io//tags/python/>python</a>&nbsp;
 </div>
 <hr>
 <section id=social-share>
@@ -387,6 +388,9 @@ print(client<span style=color:#f92672>.</span>openqa_request(<span style=color:#
 <ul class="pager blog-pager">
 <li class=previous>
 <a href=https://openQA-Bites.github.io/posts/2021-08-20-openqa-cli-cheatsheet/ data-toggle=tooltip data-placement=top title="openqa-cli Cheatsheet">&larr; Previous Post</a>
+</li>
+<li class=next>
+<a href=https://openQA-Bites.github.io/posts/2021-11-17-clean-empty-job-groups/ data-toggle=tooltip data-placement=top title="Clean empty job groups in openQA">Next Post &rarr;</a>
 </li>
 </ul>
 </div>
@@ -462,7 +466,7 @@ phoenix
 <a href=https://openQA-Bites.github.io/>openQA bites</a>
 </p>
 <p class="credits theme-by text-muted">
-<a href=https://gohugo.io>Hugo v0.88.1</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a>
+<a href=https://gohugo.io>Hugo v0.89.3</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a>
 </p>
 </div>
 </div>
