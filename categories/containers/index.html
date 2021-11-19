@@ -3,18 +3,14 @@
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>openqa-cli cheat sheet - openQA bites</title>
-<meta name=description content="openqa-cli is a command-line utility for interacting with openQA. The tool is versatile and allows you to control and interact with an arbitrary openQA instance from the comfort of your command line.">
+<title>Containers - openQA bites</title>
 <meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/openqa\/openqa-cli-cheat-sheet\/","name":"Openqa CLI cheat sheet"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"openqa-cli cheat sheet","description":"openqa-cli is a command-line utility for interacting with openQA. The tool is versatile and allows you to control and interact with an arbitrary openQA instance from the comfort of your command line.","inLanguage":"en","wordCount":278,"datePublished":"2021-08-19T13:46:21","dateModified":"2021-08-19T13:46:21","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":[""],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/openqa\/openqa-cli-cheat-sheet\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
-<meta property="og:title" content="openqa-cli cheat sheet">
-<meta property="og:description" content="openqa-cli is a command-line utility for interacting with openQA. The tool is versatile and allows you to control and interact with an arbitrary openQA instance from the comfort of your command line.">
+<meta property="og:title" content="Containers">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png">
-<meta property="og:url" content="https://openQA-Bites.github.io/openqa/openqa-cli-cheat-sheet/">
+<meta property="og:url" content="https://openQA-Bites.github.io/categories/containers/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="openQA bites">
-<meta name=twitter:title content="openqa-cli cheat sheet">
-<meta name=twitter:description content="openqa-cli is a command-line utility for interacting with openQA. The tool is versatile and allows you to control and interact with an arbitrary openQA instance from the comfort of your command line.">
+<meta name=twitter:title content="Containers">
 <meta name=twitter:image content="https://openQA-Bites.github.io/img/avatar-icon.png">
 <meta name=twitter:card content="summary">
 <meta name=twitter:site content="@grisu48">
@@ -111,8 +107,8 @@
 <div class=container>
 <div class=row>
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<div class=page-heading>
-<h1>openqa-cli cheat sheet</h1>
+<div class=categories-heading>
+<h1>Containers</h1>
 <hr class=small>
 </div>
 </div>
@@ -123,94 +119,30 @@
 <div class=container role=main>
 <div class=row>
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<article role=main class=blog-post>
-<p><code>openqa-cli</code> is a command-line utility for interacting with openQA. The tool is versatile and allows you to control and interact with an arbitrary openQA instance from the comfort of your command line. While the internal help is quiet comprehensive, I list some of the most basic tasks in the form of a tutorial or knowledge base here.</p>
-<p>Within this page the hostname <code>duck-norris.host</code> refers to a custom openQA instance. Replace it with your own hostname.</p>
-<p>I use job id <code>1234</code> as an example ID. Replace with the actual job ID.</p>
-<h1 id=how-do-i->How do I &mldr;</h1>
-<h2 id=-show-the-help-message-for-using-the-api>&mldr; show the help message for using the API?</h2>
-<pre><code>openqa-cli api --help                                # Show help
-</code></pre>
-<h2 id=-get-a-jobs-state>&mldr; get a job&rsquo;s state?</h2>
-<pre><code>openqa-cli api jobs/1234
-openqa-cli api --host http://duck-norris.host jobs/1234
-</code></pre>
-<h2 id=-restart-a-job>&mldr; restart a job?</h2>
-<pre><code>openqa-cli api -X POST --host http://duck-norris.host jobs/1234/restart
-</code></pre>
-<p>Restart a job but not it&rsquo;s <a href=http://open.qa/docs/#_notes_regarding_directly_chained_dependencies>directly chained parents</a></p>
-<pre><code>openqa-cli api --host http://duck-norris.host -X POST jobs/1234/restart skip_parents=1
-</code></pre>
-<h2 id=-cancel-job>&mldr; cancel job?</h2>
-<pre><code>openqa-cli api -X POST --host http://duck-norris.host jobs/1234/cancel
-</code></pre>
-<h2 id=-startpost-a-new-job>&mldr; start/post a new job?</h2>
-<p>This is often referred to as &ldquo;isos post&rdquo; because it is to <a href=http://open.qa/docs/#_adding_a_new_iso_to_test>start testing a new ISO</a>, although it also applies to non-iso images nowadays</p>
-<pre><code>openqa-cli api --host http://duck-norris.host -X POST isos ARCH=x86_64 DISTRI=sle ...
-</code></pre>
-<h3 id=post-a-new-job-with-json-parameters>Post a new job with <code>json</code> parameters</h3>
-<p>To post a job with settings from a <code>json</code> file</p>
-<pre><code>openqa-cli api --host http://duck-norris.host --data-file FILE.json --form -X POST isos
-</code></pre>
-<p>The parameters <code>DISTRI</code>, <code>VERSION</code>, <code>ARCH</code> and <code>FLAVOR</code> are then taken from the json file. The <code>FILE.json</code> looks like the following:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
-    <span style=color:#f92672>&#34;DISTRI&#34;</span>: <span style=color:#e6db74>&#34;opensuse&#34;</span>,
-    <span style=color:#f92672>&#34;VERSION&#34;</span>: <span style=color:#e6db74>&#34;tumbleweed&#34;</span>,
-    <span style=color:#f92672>&#34;ARCH&#34;</span>: <span style=color:#e6db74>&#34;x86_64&#34;</span>,
-    <span style=color:#f92672>&#34;FLAVOR&#34;</span>: <span style=color:#e6db74>&#34;GCE-Updates&#34;</span>,
-    <span style=color:#f92672>&#34;IMAGE_ID&#34;</span>: <span style=color:#e6db74>&#34;image-test12345&#34;</span>,
-    <span style=color:#f92672>&#34;IMAGE_BASE&#34;</span>: <span style=color:#e6db74>&#34;publiccloud_tools.qcow2&#34;</span>
-    <span style=color:#e6db74>&#34;INCIDENT_ID&#34;</span>: <span style=color:#ae81ff>12345</span>,
-    <span style=color:#f92672>&#34;BUILD&#34;</span>: <span style=color:#e6db74>&#34;:12345:kernel&#34;</span>,
-    <span style=color:#f92672>&#34;_OBSOLETE&#34;</span>: <span style=color:#e6db74>&#34;1&#34;</span>,
-}
-</code></pre></div><h2 id=-delete-a-job>&mldr; delete a job?</h2>
-<pre><code>openqa-cli api --host http://duck-norris.host -X DELETE jobs/1234
-</code></pre>
-<hr>
-<section id=social-share>
-<div class="list-inline footer-links">
-<div class=share-box aria-hidden=true>
-<ul class=share>
-<li>
-<a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fopenqa%2fopenqa-cli-cheat-sheet%2f&text=openqa-cli%20cheat%20sheet&via=grisu48" target=_blank title="Share on Twitter">
-<i class="fab fa-twitter"></i>
+<div class=posts-list>
+<article class=post-preview>
+<a href=https://openQA-Bites.github.io/posts/2021-11-19-container-layer-analyzer/>
+<h2 class=post-title>Container Layer Analyzer</h2>
 </a>
-</li>
-<li>
-<a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fopenqa%2fopenqa-cli-cheat-sheet%2f" target=_blank title="Share on Facebook">
-<i class="fab fa-facebook"></i>
-</a>
-</li>
-<li>
-<a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fopenqa%2fopenqa-cli-cheat-sheet%2f&title=openqa-cli%20cheat%20sheet" target=_blank title="Share on Reddit">
-<i class="fab fa-reddit"></i>
-</a>
-</li>
-<li>
-<a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fopenqa%2fopenqa-cli-cheat-sheet%2f&title=openqa-cli%20cheat%20sheet" target=_blank title="Share on LinkedIn">
-<i class="fab fa-linkedin"></i>
-</a>
-</li>
-<li>
-<a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fopenqa%2fopenqa-cli-cheat-sheet%2f&title=openqa-cli%20cheat%20sheet" target=_blank title="Share on StumbleUpon">
-<i class="fab fa-stumbleupon"></i>
-</a>
-</li>
-<li>
-<a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fopenqa%2fopenqa-cli-cheat-sheet%2f&description=openqa-cli%20cheat%20sheet" target=_blank title="Share on Pinterest">
-<i class="fab fa-pinterest"></i>
-</a>
-</li>
-</ul>
+<p class=post-meta>
+<span class=post-meta>
+<i class="fas fa-calendar"></i>&nbsp;Posted on November 19, 2021
+&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;129&nbsp;words
+&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
+</span>
+</p>
+<div class=post-entry>
+Today I&rsquo;d like to point out an amazing new tool: The Container Layer Analyzer, written by Dan Čermák. Dan also wrote a comprehensive blog post about it, which explains it much better than what I do here.
+<a href=https://openQA-Bites.github.io/posts/2021-11-19-container-layer-analyzer/ class=post-read-more>[Read More]</a>
 </div>
+<div class=blog-tags>
+<a href=https://openQA-Bites.github.io//tags/containers/>Containers</a>&nbsp;
 </div>
-</section>
 </article>
 </div>
 </div>
 </div>
-<div class=page-meta>
 </div>
 <footer>
 <div class=container>
@@ -266,7 +198,7 @@ openqa-cli api --host http://duck-norris.host jobs/1234
 </a>
 </li>
 <li>
-<a href title=RSS>
+<a href=https://openQA-Bites.github.io/categories/containers/index.xml title=RSS>
 <span class="fa-stack fa-lg">
 <i class="fas fa-circle fa-stack-2x"></i>
 <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
