@@ -4,17 +4,17 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Windows VM and Hyper-V (nested virtualization) - openQA bites</title>
-<meta name=description content="In this encore to the Run Azure images in Hyper-V or kvm will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on Linux.">
+<meta name=description content="In this encore to the Run Azure images in Hyper-V or kvm will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on openSUSE Tumbleweed.">
 <meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-02-hyperv-nested-guest\/","name":"Windows vm and hyper v (nested virtualization)"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Windows VM and Hyper-V (nested virtualization)","description":"In this encore to the Run Azure images in Hyper-V or kvm will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on Linux.","inLanguage":"en","wordCount":236,"datePublished":"2021-12-02T15:54:43","dateModified":"2021-12-02T15:54:43","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["Virtualization, Hyper-V"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-02-hyperv-nested-guest\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-02-hyperv-nested-guest\/","name":"Windows vm and hyper v (nested virtualization)"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Windows VM and Hyper-V (nested virtualization)","description":"In this encore to the Run Azure images in Hyper-V or kvm will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on openSUSE Tumbleweed.","inLanguage":"en","wordCount":237,"datePublished":"2021-12-02T15:54:43","dateModified":"2021-12-02T15:54:43","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["Virtualization, Hyper-V"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-02-hyperv-nested-guest\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
 <meta property="og:title" content="Windows VM and Hyper-V (nested virtualization)">
-<meta property="og:description" content="In this encore to the Run Azure images in Hyper-V or kvm will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on Linux.">
+<meta property="og:description" content="In this encore to the Run Azure images in Hyper-V or kvm will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on openSUSE Tumbleweed.">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png">
 <meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-12-02-hyperv-nested-guest/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="openQA bites">
 <meta name=twitter:title content="Windows VM and Hyper-V (nested virtualization)">
-<meta name=twitter:description content="In this encore to the Run Azure images in Hyper-V or kvm will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on Linux.">
+<meta name=twitter:description content="In this encore to the Run Azure images in Hyper-V or kvm will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on openSUSE Tumbleweed.">
 <meta name=twitter:image content="https://openQA-Bites.github.io/img/avatar-icon.png">
 <meta name=twitter:card content="summary">
 <meta name=twitter:site content="@grisu48">
@@ -116,7 +116,7 @@
 <span class=post-meta>
 <i class="fas fa-calendar"></i>&nbsp;Posted on December 2, 2021
 &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;236&nbsp;words
+&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;237&nbsp;words
 &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
 </span>
 </div>
@@ -129,7 +129,7 @@
 <div class=row>
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 <article role=main class=blog-post>
-<p>In this encore to the <a href=https://openQA-Bites.github.io/posts/2021-12-01-run-azure-image-on-hyperv/>Run Azure images in Hyper-V or kvm</a> will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on Linux.</p>
+<p>In this encore to the <a href=https://openQA-Bites.github.io/posts/2021-12-01-run-azure-image-on-hyperv/>Run Azure images in Hyper-V or kvm</a> will briefly discuss, if it is possible to create your own Hyper-V Windows Hypervisor as a kvm guest on openSUSE Tumbleweed.</p>
 <p><strong>No, you can&rsquo;t</strong> (at least not on my Intel-Based Laptop).</p>
 <p>Once you install Hyper-V, the guest won&rsquo;t be even able to boot. My guest is stuck at booting with &ldquo;Preparing Automatic Repair&rdquo;.</p>
 <p><img src=Whoopsie.png alt="Screenshot showing the Windows logo and &ldquo;Preparing Automatic Repair&rdquo;"></p>
