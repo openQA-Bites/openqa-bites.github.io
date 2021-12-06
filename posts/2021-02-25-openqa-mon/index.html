@@ -6,7 +6,7 @@
 <title>Active monitoring of openQA jobs - openQA bites</title>
 <meta name=description content="openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.">
 <meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-02-25-openqa-mon\/","name":"Active monitoring of open qa jobs"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Active monitoring of openQA jobs","description":"openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.","inLanguage":"en","wordCount":951,"datePublished":"2021-02-25T14:54:57","dateModified":"2021-02-25T14:54:57","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["tools, openqa-mon, cli"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-02-25-openqa-mon\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-02-25-openqa-mon\/","name":"Active monitoring of open qa jobs"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Active monitoring of openQA jobs","description":"openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.","inLanguage":"en","wordCount":970,"datePublished":"2021-02-25T14:54:57","dateModified":"2021-02-25T14:54:57","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["tools, openqa-mon, cli"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-02-25-openqa-mon\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
 <meta property="og:title" content="Active monitoring of openQA jobs">
 <meta property="og:description" content="openqa-mon is a little command-line utility to monitor one or multiple openQA jobs for their status. This tool is useful if you want to live monitor a handful of jobs closely e.">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png">
@@ -116,7 +116,7 @@
 <span class=post-meta>
 <i class="fas fa-calendar"></i>&nbsp;Posted on February 25, 2021
 &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;951&nbsp;words
+&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;970&nbsp;words
 &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
 </span>
 </div>
@@ -135,6 +135,10 @@
 <p>We have been using this tool for half a year already to monitor our virtualization runs. Virtualization runs are a complex construct that run on bare-metal hosts. Our virtualization setup is constantly improving but still sometimes a bit fragile and requires close monitoring. This is what this tool was originally created for.</p>
 <p><img src=openqa-mon.png alt="Terminal screenshot of openQA showing multiple jobs, one line by line."></p>
 <h1 id=installation>Installation</h1>
+<p><strong>Update 2021-12-06</strong>: <code>openqa-mon</code> is now in the main <code>Tumbleweed</code> repository. You can install it via</p>
+<pre><code># zypper in openqa-mon
+</code></pre>
+<hr>
 <p><a href=https://github.com/grisu48/openqa-mon><code>openqa-mon</code></a> is packaged in my <a href=https://build.opensuse.org/project/show/home:ph03nix:tools>tools project on OBS</a>. The easiest way to install this on openSUSE is to install it via <a href=https://software.opensuse.org/package/openqa-mon>software.opensuse.org</a> and follow the instructions there. With this approach you will also get updates via your package manager.
 For Tumbleweed e.g. the following should work for you:</p>
 <pre><code>zypper addrepo https://download.opensuse.org/repositories/home:ph03nix:tools/openSUSE_Tumbleweed/home:ph03nix:tools.repo
