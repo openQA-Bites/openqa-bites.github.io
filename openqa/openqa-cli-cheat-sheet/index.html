@@ -138,16 +138,16 @@ openqa-cli api --host http://duck-norris.host jobs/1234
 <h2 id=-restart-a-job>&mldr; restart a job?</h2>
 <pre><code>openqa-cli api -X POST --host http://duck-norris.host jobs/1234/restart
 </code></pre>
-<p>Restart a job but not it&rsquo;s <a href=http://open.qa/docs/#_notes_regarding_directly_chained_dependencies>directly chained parents</a></p>
+<p>Restart a job but not its <a href=http://open.qa/docs/#_notes_regarding_directly_chained_dependencies>directly chained parents</a></p>
 <pre><code>openqa-cli api --host http://duck-norris.host -X POST jobs/1234/restart skip_parents=1
 </code></pre>
 <h2 id=-cancel-job>&mldr; cancel job?</h2>
 <pre><code>openqa-cli api -X POST --host http://duck-norris.host jobs/1234/cancel
 </code></pre>
 <h2 id=-startpost-a-new-job>&mldr; start/post a new job?</h2>
-<p>This is often referred to as &ldquo;isos post&rdquo; because it is to <a href=http://open.qa/docs/#_adding_a_new_iso_to_test>start testing a new ISO</a>, although it also applies to non-iso images nowadays</p>
 <pre><code>openqa-cli api --host http://duck-norris.host -X POST isos ARCH=x86_64 DISTRI=sle ...
 </code></pre>
+<p>This is often referred to as &ldquo;isos post&rdquo; because it has been used to <a href=http://open.qa/docs/#_adding_a_new_iso_to_test>test an ISO image</a>. Nowadays we are also testing non-iso images</p>
 <h3 id=post-a-new-job-with-json-parameters>Post a new job with <code>json</code> parameters</h3>
 <p>To post a job with settings from a <code>json</code> file</p>
 <pre><code>openqa-cli api --host http://duck-norris.host --data-file FILE.json --form -X POST isos
