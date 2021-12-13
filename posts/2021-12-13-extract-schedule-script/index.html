@@ -1,0 +1,418 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Extract SCHEDULE from an openQA job - openQA bites</title>
+<meta name=description content="Then using openqa-clone-job (and derivates) one can use the SCHEDULE variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.">
+<meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-13-extract-schedule-script\/","name":"Extract schedule from an open qa job"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Extract SCHEDULE from an openQA job","description":"Then using openqa-clone-job (and derivates) one can use the SCHEDULE variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.","inLanguage":"en","wordCount":740,"datePublished":"2021-12-13T13:46:51","dateModified":"2021-12-13T13:46:51","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["openQA, Python, tools"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-13-extract-schedule-script\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
+<meta property="og:title" content="Extract SCHEDULE from an openQA job">
+<meta property="og:description" content="Then using openqa-clone-job (and derivates) one can use the SCHEDULE variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.">
+<meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png">
+<meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-12-13-extract-schedule-script/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="openQA bites">
+<meta name=twitter:title content="Extract SCHEDULE from an openQA job">
+<meta name=twitter:description content="Then using openqa-clone-job (and derivates) one can use the SCHEDULE variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you …">
+<meta name=twitter:image content="https://openQA-Bites.github.io/img/avatar-icon.png">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@grisu48">
+<meta name=twitter:creator content="@grisu48">
+<link href=https://openQA-Bites.github.io/img/favicon.ico rel=icon type=image/x-icon>
+<meta name=generator content="Hugo 0.90.1">
+<link rel=alternate href=https://openQA-Bites.github.io/index.xml type=application/rss+xml title="openQA bites"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous>
+<link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://openQA-Bites.github.io/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://openQA-Bites.github.io/css/syntax.css><link rel=stylesheet href=https://openQA-Bites.github.io/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+<div class=container-fluid>
+<div class=navbar-header>
+<button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=https://openQA-Bites.github.io/>openQA bites</a>
+</div>
+<div class="collapse navbar-collapse" id=main-navbar>
+<ul class="nav navbar-nav navbar-right">
+<li class=navlinks-container>
+<a class=navlinks-parent>openQA</a>
+<div class=navlinks-children>
+<a href=https://openQA-Bites.github.io/openqa/openqa-cli-cheat-sheet>openqa-cli cheat sheet</a>
+</div>
+</li>
+<li>
+<a title=Categories href=https://openQA-Bites.github.io/categories/>Categories</a>
+</li>
+<li>
+<a title=Tags href=https://openQA-Bites.github.io/tags/>Tags</a>
+</li>
+<li>
+<a title=About href=https://openQA-Bites.github.io/about/>About</a>
+</li>
+<li>
+<a title=Related href=https://openQA-Bites.github.io/related/>Related</a>
+</li>
+</ul>
+</div>
+<div class=avatar-container>
+<div class=avatar-img-border>
+<a title="openQA bites" href=https://openQA-Bites.github.io/>
+<img class=avatar-img src=https://openQA-Bites.github.io/img/avatar-icon.png alt="openQA bites">
+</a>
+</div>
+</div>
+</div>
+</nav>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div>
+<header class=header-section>
+<div class="intro-header no-img">
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class=post-heading>
+<h1>Extract SCHEDULE from an openQA job</h1>
+<span class=post-meta>
+<i class="fas fa-calendar"></i>&nbsp;Posted on December 13, 2021
+&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;740&nbsp;words
+&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class=container role=main>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<article role=main class=blog-post>
+<p>Then using <code>openqa-clone-job</code> (and derivates) one can use the <code>SCHEDULE</code> variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.g. one additional test module or excluding some failing ones.
+However it is sometimes cumbersome to type out a neverending of tests into a custom <code>SCHEDULE</code> variable, if the amount of test modules exceeds 5 or more tests (e.g. <a href=https://openqa.opensuse.org/tests/2082504>extra_tests_textmode</a> - good luck!).</p>
+<h2 id=tldr>TL&rsquo;DR</h2>
+<ul>
+<li>The <a href=openqa-extract-schedule.py>openqa-extract-schedule</a> script takes the link to an openQA job and extracts the <code>SCHEDULE</code> variable for you</li>
+<li>This variable can be used with <code>openqa-clone-job</code> (and derivatives)</li>
+<li>It&rsquo;s hacky, but it works</li>
+</ul>
+<p>This is how it works:</p>
+<pre><code>$ openqa-extract-schedule https://openqa.opensuse.org/tests/2083138
+SCHEDULE=tests/installation/bootloader_uefi,tests/jeos/firstrun,tests/jeos/record_machine_id,tests/console/force_scheduled_tasks,tests/jeos/grub2_gfxmode,tests/jeos/diskusage,tests/jeos/build_key,tests/console/prjconf_excluded_rpms,tests/console/journal_check,tests/microos/libzypp_config,tests/update/zypper_clear_repos,tests/console/zypper_ar,tests/console/zypper_ref,tests/containers/podman_image,tests/containers/docker_image,tests/containers/container_diff,tests/console/coredump_collect
+</code></pre>
+<p>The full script is at the end of this post.</p>
+<h1 id=the-problem>The problem</h1>
+<p>Today when working on the schedule of the JeOS container test runs on Tumbleweed (<a href=https://openqa.opensuse.org/tests/2083138>openqa.opensuse.org/t2083138</a>) I faced this problem. One can easily see that the resulting list is prone to human typing errors and it is become annoyingly large to even start with:</p>
+<pre><code>tests/installation/bootloader_uefi
+tests/jeos/firstrun
+tests/jeos/record_machine_id
+tests/console/force_scheduled_tasks
+tests/jeos/grub2_gfxmode
+tests/jeos/diskusage
+tests/jeos/build_key
+tests/console/prjconf_excluded_rpms
+tests/console/journal_check
+tests/microos/libzypp_config
+tests/update/zypper_clear_repos
+tests/console/zypper_ar
+tests/console/zypper_ref
+tests/containers/podman_image
+tests/containers/docker_image
+tests/containers/container_diff
+tests/console/coredump_collect
+</code></pre>
+<p>If there would only be a way to making this task a bit easier for me &mldr;</p>
+<h1 id=automate-it>Automate it!</h1>
+<p>So, after half a minute of typing and realizing that this is a very stupid task to do, I figured, &ldquo;what the heck, let&rsquo;s automate this&rdquo;. So I hacked my <a href=openqa-extract-schedule.py>openqa-extract-schedule</a> python script which does exactly this task. You give it a link to an openQA job and it assembled the <code>SCHEDULE</code> variable for <code>openqa-clone-job</code> for you:</p>
+<pre><code>$ openqa-extract-schedule https://openqa.opensuse.org/tests/2083138
+SCHEDULE=tests/installation/bootloader_uefi,tests/jeos/firstrun,tests/jeos/record_machine_id,tests/console/force_scheduled_tasks,tests/jeos/grub2_gfxmode,tests/jeos/diskusage,tests/jeos/build_key,tests/console/prjconf_excluded_rpms,tests/console/journal_check,tests/microos/libzypp_config,tests/update/zypper_clear_repos,tests/console/zypper_ar,tests/console/zypper_ref,tests/containers/podman_image,tests/containers/docker_image,tests/containers/container_diff,tests/console/coredump_collect
+</code></pre>
+<p>The script comes with a help message (<code>-h</code> or <code>--help</code>), which gives you some examples that should point you in the right direction &mldr;</p>
+<pre><code>openqa-extract-schedule -h
+Usage: /home/phoenix/bin/openqa-extract-schedule [INSTANCE,JOBURL,JOBID]
+  Assemble the SCHEDULE= variable from a given openQA job
+
+Examples:
+  /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org/tests/12345
+  /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org/t12345
+  /home/phoenix/bin/openqa-extract-schedule --ooo 12345                                          # Same as above
+  /home/phoenix/bin/openqa-extract-schedule --o3 12345                                           # Same as above
+  /home/phoenix/bin/openqa-extract-schedule --osd 12345                                          # Use openqa.suse.de
+  /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org 12345 67890              # Two jobs, first define the instance
+  /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org/tests/12345 67890        # Two jobs
+</code></pre>
+<h1 id=script>Script</h1>
+<p>And here is the full script <a href=openqa-extract-schedule.py>openqa-extract-schedule</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e>#!/usr/bin/python3</span>
+<span style=color:#75715e># -*- coding: utf-8 -*-</span>
+
+<span style=color:#f92672>import</span> json
+<span style=color:#f92672>import</span> sys
+<span style=color:#f92672>from</span> openqa_client.client <span style=color:#f92672>import</span> OpenQA_Client
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_schedule</span>(instance, job) :
+	<span style=color:#e6db74>&#39;&#39;&#39;
+</span><span style=color:#e6db74>	Build a SCHEDULE parameter from the given job (id) on the given instance
+</span><span style=color:#e6db74>	&#39;&#39;&#39;</span>
+	schedule <span style=color:#f92672>=</span> []
+	
+	<span style=color:#75715e>## Configure instance</span>
+	client <span style=color:#f92672>=</span> OpenQA_Client(server<span style=color:#f92672>=</span>instance)
+	path <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;jobs/</span><span style=color:#e6db74>%d</span><span style=color:#e6db74>/details&#34;</span> <span style=color:#f92672>%</span> (job)
+	job <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>openqa_request(method<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;GET&#34;</span>, path<span style=color:#f92672>=</span>path)[<span style=color:#e6db74>&#39;job&#39;</span>]
+	<span style=color:#75715e># iterate over testresults. category is only set for a new category (e.g. &#34;installation&#34;, &#34;console&#34;, ecc.)</span>
+	category <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>
+	<span style=color:#66d9ef>for</span> result <span style=color:#f92672>in</span> job[<span style=color:#e6db74>&#39;testresults&#39;</span>] :
+		<span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;category&#34;</span> <span style=color:#f92672>in</span> result : category <span style=color:#f92672>=</span> result[<span style=color:#e6db74>&#39;category&#39;</span>]
+		name <span style=color:#f92672>=</span> result[<span style=color:#e6db74>&#39;name&#39;</span>]
+		schedule<span style=color:#f92672>.</span>append(<span style=color:#e6db74>&#34;</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>/</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> (category, name))
+	<span style=color:#66d9ef>return</span> schedule
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>is_int</span>(x) :
+	<span style=color:#66d9ef>try</span> :
+		x <span style=color:#f92672>=</span> int(x)
+		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
+	<span style=color:#66d9ef>except</span> <span style=color:#a6e22e>ValueError</span> :
+		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>print_schedule</span>(schedule) :
+	<span style=color:#75715e># add &#39;tests/&#39; as prefix</span>
+	schedule <span style=color:#f92672>=</span> map(<span style=color:#66d9ef>lambda</span> x : <span style=color:#e6db74>&#39;tests/&#39;</span> <span style=color:#f92672>+</span> x, schedule)
+	text <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;,&#34;</span><span style=color:#f92672>.</span>join(schedule)
+	print(<span style=color:#e6db74>&#34;SCHEDULE=</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> text)
+
+<span style=color:#e6db74>&#39;&#39;&#39;
+</span><span style=color:#e6db74>Cleans an url, i.e. remove a possible fragment
+</span><span style=color:#e6db74>&#39;&#39;&#39;</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>clean_url</span>(url) :
+	i <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>find(<span style=color:#e6db74>&#39;#&#39;</span>)
+	<span style=color:#66d9ef>if</span> i <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> : <span style=color:#66d9ef>return</span> url[:i]
+	<span style=color:#66d9ef>return</span> url
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>print_usage</span>() :
+	prog <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>0</span>]
+	print(<span style=color:#e6db74>&#34;Usage: </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> [INSTANCE,JOBURL,JOBID]&#34;</span> <span style=color:#f92672>%</span> prog)
+	print(<span style=color:#e6db74>&#34;  Assemble the SCHEDULE= variable from a given openQA job&#34;</span>)
+	print(<span style=color:#e6db74>&#34;&#34;</span>)
+	print(<span style=color:#e6db74>&#34;Examples:&#34;</span>)
+	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org/tests/12345&#34;</span> <span style=color:#f92672>%</span> prog)
+	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org/t12345&#34;</span> <span style=color:#f92672>%</span> prog)
+	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> --ooo 12345                                          # Same as above&#34;</span> <span style=color:#f92672>%</span> prog)
+	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> --o3 12345                                           # Same as above&#34;</span> <span style=color:#f92672>%</span> prog)
+	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> --osd 12345                                          # Use openqa.suse.de&#34;</span> <span style=color:#f92672>%</span> prog)
+	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org 12345 67890              # Two jobs, first define the instance&#34;</span> <span style=color:#f92672>%</span> prog)
+	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org/tests/12345 67890        # Two jobs&#34;</span> <span style=color:#f92672>%</span> prog)
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
+	instance <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://openqa.opensuse.org&#34;</span>         <span style=color:#75715e># Default instance</span>
+	
+	<span style=color:#75715e># Lazy argument matching because I&#39;m lazy.</span>
+	<span style=color:#66d9ef>for</span> url <span style=color:#f92672>in</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>1</span>:] :
+		url <span style=color:#f92672>=</span> clean_url(url)
+		<span style=color:#66d9ef>if</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;-h&#34;</span> <span style=color:#f92672>or</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--help&#34;</span> :
+			print_usage()
+			sys<span style=color:#f92672>.</span>exit(<span style=color:#ae81ff>0</span>)
+		<span style=color:#66d9ef>elif</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--osd&#34;</span> :
+			instance <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://openqa.suse.de&#34;</span>
+		<span style=color:#66d9ef>elif</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--ooo&#34;</span> <span style=color:#f92672>or</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--o3&#34;</span> :
+			instance <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://openqa.opensuse.org&#34;</span>
+		<span style=color:#66d9ef>elif</span> <span style=color:#e6db74>&#34;/tests/&#34;</span> <span style=color:#f92672>in</span> url :         <span style=color:#75715e># https://openqa.opensuse.org/tests/12345</span>
+			i <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>find(<span style=color:#e6db74>&#34;/tests/&#34;</span>)
+			instance <span style=color:#f92672>=</span> url[:i]
+			job <span style=color:#f92672>=</span> int(url[i<span style=color:#f92672>+</span><span style=color:#ae81ff>7</span>:])
+			schedule <span style=color:#f92672>=</span> get_schedule(instance, job)
+			print_schedule(schedule)
+		<span style=color:#66d9ef>elif</span> <span style=color:#e6db74>&#34;/t&#34;</span> <span style=color:#f92672>in</span> url :              <span style=color:#75715e># https://openqa.opensuse.org/t12345</span>
+			i <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>rfind(<span style=color:#e6db74>&#34;/t&#34;</span>)
+			instance <span style=color:#f92672>=</span> url[:i]
+			job <span style=color:#f92672>=</span> int(url[i<span style=color:#f92672>+</span><span style=color:#ae81ff>2</span>:])
+			schedule <span style=color:#f92672>=</span> get_schedule(instance, job)
+			print_schedule(schedule)
+		<span style=color:#66d9ef>elif</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;http://&#34;</span>) <span style=color:#f92672>or</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;https://&#34;</span>) :
+			<span style=color:#75715e># Assume it&#39;s an instance</span>
+			instance <span style=color:#f92672>=</span> url
+		<span style=color:#66d9ef>elif</span> is_int(url) :              <span style=color:#75715e># after an instance is defined we can also just pass the job id</span>
+			job <span style=color:#f92672>=</span> int(url)
+			schedule <span style=color:#f92672>=</span> get_schedule(instance, job)
+			print_schedule(schedule)
+		<span style=color:#66d9ef>else</span> :
+			sys<span style=color:#f92672>.</span>stderr<span style=color:#f92672>.</span>write(<span style=color:#e6db74>&#34;Invalid argument: </span><span style=color:#e6db74>%s</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> url)
+			sys<span style=color:#f92672>.</span>exit(<span style=color:#ae81ff>1</span>)
+</code></pre></div>
+<div class=blog-tags>
+<a href=https://openQA-Bites.github.io//tags/openqa/>openQA</a>&nbsp;
+<a href=https://openQA-Bites.github.io//tags/python/>Python</a>&nbsp;
+<a href=https://openQA-Bites.github.io//tags/tools/>tools</a>&nbsp;
+</div>
+<hr>
+<section id=social-share>
+<div class="list-inline footer-links">
+<div class=share-box aria-hidden=true>
+<ul class=share>
+<li>
+<a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-12-13-extract-schedule-script%2f&text=Extract%20SCHEDULE%20from%20an%20openQA%20job&via=grisu48" target=_blank title="Share on Twitter">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li>
+<a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-12-13-extract-schedule-script%2f" target=_blank title="Share on Facebook">
+<i class="fab fa-facebook"></i>
+</a>
+</li>
+<li>
+<a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-12-13-extract-schedule-script%2f&title=Extract%20SCHEDULE%20from%20an%20openQA%20job" target=_blank title="Share on Reddit">
+<i class="fab fa-reddit"></i>
+</a>
+</li>
+<li>
+<a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-12-13-extract-schedule-script%2f&title=Extract%20SCHEDULE%20from%20an%20openQA%20job" target=_blank title="Share on LinkedIn">
+<i class="fab fa-linkedin"></i>
+</a>
+</li>
+<li>
+<a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-12-13-extract-schedule-script%2f&title=Extract%20SCHEDULE%20from%20an%20openQA%20job" target=_blank title="Share on StumbleUpon">
+<i class="fab fa-stumbleupon"></i>
+</a>
+</li>
+<li>
+<a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-12-13-extract-schedule-script%2f&description=Extract%20SCHEDULE%20from%20an%20openQA%20job" target=_blank title="Share on Pinterest">
+<i class="fab fa-pinterest"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</section>
+</article>
+<ul class="pager blog-pager">
+<li class=previous>
+<a href=https://openQA-Bites.github.io/posts/2021-12-02-hyperv-nested-guest/ data-toggle=tooltip data-placement=top title="Windows VM and Hyper-V (nested virtualization)">&larr; Previous Post</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center footer-links">
+<li>
+<a href=mailto:felix.niederwanger@suse.de title="Email me">
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href=https://github.com/grisu48 title=GitHub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href=https://twitter.com/grisu48 title=Twitter>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href=https://reddit.com/u/grisu48 title=Reddit>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-reddit-alien fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href=https://linkedin.com/in/felix-niederwanger title=LinkedIn>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href=https://chaos.social/@phoenix title=Mastodon>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-mastodon fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href title=RSS>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+<p class="credits copyright text-muted">
+phoenix
+&nbsp;&bull;&nbsp;&copy;
+2021
+&nbsp;&bull;&nbsp;
+<a href=https://openQA-Bites.github.io/>openQA bites</a>
+</p>
+<p class="credits theme-by text-muted">
+<a href=https://gohugo.io>Hugo v0.90.1</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a>
+</p>
+</div>
+</div>
+</div>
+</footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script>
+<script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script>
+<script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
+<script src=https://openQA-Bites.github.io/js/main.js></script><script>renderMathInElement(document.body)</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://openQA-Bites.github.io/js/load-photoswipe.js></script>
+</body>
+</html>
