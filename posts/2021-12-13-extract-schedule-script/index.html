@@ -6,7 +6,7 @@
 <title>Extract SCHEDULE from an openQA job - openQA bites</title>
 <meta name=description content="Then using openqa-clone-job (and derivates) one can use the SCHEDULE variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.">
 <meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-13-extract-schedule-script\/","name":"Extract schedule from an open qa job"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Extract SCHEDULE from an openQA job","description":"Then using openqa-clone-job (and derivates) one can use the SCHEDULE variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.","inLanguage":"en","wordCount":740,"datePublished":"2021-12-13T13:46:51","dateModified":"2021-12-13T13:46:51","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["openQA, Python, tools"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-13-extract-schedule-script\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-13-extract-schedule-script\/","name":"Extract schedule from an open qa job"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Extract SCHEDULE from an openQA job","description":"Then using openqa-clone-job (and derivates) one can use the SCHEDULE variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.","inLanguage":"en","wordCount":762,"datePublished":"2021-12-13T13:46:51","dateModified":"2021-12-13T13:46:51","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["openQA, Python, tools"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-12-13-extract-schedule-script\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
 <meta property="og:title" content="Extract SCHEDULE from an openQA job">
 <meta property="og:description" content="Then using openqa-clone-job (and derivates) one can use the SCHEDULE variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png">
@@ -116,7 +116,7 @@
 <span class=post-meta>
 <i class="fas fa-calendar"></i>&nbsp;Posted on December 13, 2021
 &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;740&nbsp;words
+&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;762&nbsp;words
 &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
 </span>
 </div>
@@ -129,21 +129,20 @@
 <div class=row>
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 <article role=main class=blog-post>
-<p>Then using <code>openqa-clone-job</code> (and derivates) one can use the <code>SCHEDULE</code> variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.g. one additional test module or excluding some failing ones.
-However it is sometimes cumbersome to type out a neverending of tests into a custom <code>SCHEDULE</code> variable, if the amount of test modules exceeds 5 or more tests (e.g. <a href=https://openqa.opensuse.org/tests/2082504>extra_tests_textmode</a> - good luck!).</p>
+<p>Then using <code>openqa-clone-job</code> (and derivates) one can use the <code>SCHEDULE</code> variable to clone a test run with a custom set of test modules. This is particular useful, when developing a new test case and you need a verification run with e.g. an additional test module or to exclude some failing ones.
+However it is sometimes cumbersome to type out a large list of tests into a custom <code>SCHEDULE</code> variable, if the amount of test modules exceeds 5 or more tests (e.g. <a href=https://openqa.opensuse.org/tests/2082504>extra_tests_textmode</a> - good luck!).</p>
 <h2 id=tldr>TL&rsquo;DR</h2>
 <ul>
 <li>The <a href=openqa-extract-schedule.py>openqa-extract-schedule</a> script takes the link to an openQA job and extracts the <code>SCHEDULE</code> variable for you</li>
 <li>This variable can be used with <code>openqa-clone-job</code> (and derivatives)</li>
-<li>It&rsquo;s hacky, but it works</li>
 </ul>
-<p>This is how it works:</p>
+<p>It&rsquo;s hacky, but it works:</p>
 <pre><code>$ openqa-extract-schedule https://openqa.opensuse.org/tests/2083138
 SCHEDULE=tests/installation/bootloader_uefi,tests/jeos/firstrun,tests/jeos/record_machine_id,tests/console/force_scheduled_tasks,tests/jeos/grub2_gfxmode,tests/jeos/diskusage,tests/jeos/build_key,tests/console/prjconf_excluded_rpms,tests/console/journal_check,tests/microos/libzypp_config,tests/update/zypper_clear_repos,tests/console/zypper_ar,tests/console/zypper_ref,tests/containers/podman_image,tests/containers/docker_image,tests/containers/container_diff,tests/console/coredump_collect
 </code></pre>
 <p>The full script is at the end of this post.</p>
 <h1 id=the-problem>The problem</h1>
-<p>Today when working on the schedule of the JeOS container test runs on Tumbleweed (<a href=https://openqa.opensuse.org/tests/2083138>openqa.opensuse.org/t2083138</a>) I faced this problem. One can easily see that the resulting list is prone to human typing errors and it is become annoyingly large to even start with:</p>
+<p>Today when working on the schedule of the JeOS container test runs on Tumbleweed (<a href=https://openqa.opensuse.org/tests/2083138>openqa.opensuse.org/t2083138</a>) I faced this problem: I wanted to add <code>validate_btrfs</code> to check why it is failing, but looking at the schedule list, I didn&rsquo;t wanted to type all of those test runs by hand. One can easily see that the resulting list is prone to human typing errors and it is annoyingly large to even start with:</p>
 <pre><code>tests/installation/bootloader_uefi
 tests/jeos/firstrun
 tests/jeos/record_machine_id
@@ -164,7 +163,7 @@ tests/console/coredump_collect
 </code></pre>
 <p>If there would only be a way to making this task a bit easier for me &mldr;</p>
 <h1 id=automate-it>Automate it!</h1>
-<p>So, after half a minute of typing and realizing that this is a very stupid task to do, I figured, &ldquo;what the heck, let&rsquo;s automate this&rdquo;. So I hacked my <a href=openqa-extract-schedule.py>openqa-extract-schedule</a> python script which does exactly this task. You give it a link to an openQA job and it assembled the <code>SCHEDULE</code> variable for <code>openqa-clone-job</code> for you:</p>
+<p>So, after half a minute of typing and realizing that this is a very stupid task to do, I figured, &ldquo;what the heck, let&rsquo;s automate this&rdquo;. I hacked my <a href=openqa-extract-schedule.py>openqa-extract-schedule</a> python script which does exactly this task. You give it a link to an openQA job and it assembled the <code>SCHEDULE</code> variable for usage with <code>openqa-clone-job</code> for you:</p>
 <pre><code>$ openqa-extract-schedule https://openqa.opensuse.org/tests/2083138
 SCHEDULE=tests/installation/bootloader_uefi,tests/jeos/firstrun,tests/jeos/record_machine_id,tests/console/force_scheduled_tasks,tests/jeos/grub2_gfxmode,tests/jeos/diskusage,tests/jeos/build_key,tests/console/prjconf_excluded_rpms,tests/console/journal_check,tests/microos/libzypp_config,tests/update/zypper_clear_repos,tests/console/zypper_ar,tests/console/zypper_ref,tests/containers/podman_image,tests/containers/docker_image,tests/containers/container_diff,tests/console/coredump_collect
 </code></pre>
@@ -176,11 +175,13 @@ Usage: /home/phoenix/bin/openqa-extract-schedule [INSTANCE,JOBURL,JOBID]
 Examples:
   /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org/tests/12345
   /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org/t12345
-  /home/phoenix/bin/openqa-extract-schedule --ooo 12345                                          # Same as above
-  /home/phoenix/bin/openqa-extract-schedule --o3 12345                                           # Same as above
-  /home/phoenix/bin/openqa-extract-schedule --osd 12345                                          # Use openqa.suse.de
-  /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org 12345 67890              # Two jobs, first define the instance
-  /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org/tests/12345 67890        # Two jobs
+  /home/phoenix/bin/openqa-extract-schedule --ooo 12345                 # Same as above
+  /home/phoenix/bin/openqa-extract-schedule --o3 12345                  # Same as above
+  /home/phoenix/bin/openqa-extract-schedule --osd 12345                 # Use openqa.suse.de
+  # Two jobs, first define the instance
+  /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org 12345 67890
+  # Two jobs
+  /home/phoenix/bin/openqa-extract-schedule https://openqa.opensuse.org/tests/12345 67890
 </code></pre>
 <h1 id=script>Script</h1>
 <p>And here is the full script <a href=openqa-extract-schedule.py>openqa-extract-schedule</a></p>
@@ -191,94 +192,118 @@ Examples:
 <span style=color:#f92672>import</span> sys
 <span style=color:#f92672>from</span> openqa_client.client <span style=color:#f92672>import</span> OpenQA_Client
 
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_schedule</span>(instance, job) :
-	<span style=color:#e6db74>&#39;&#39;&#39;
-</span><span style=color:#e6db74>	Build a SCHEDULE parameter from the given job (id) on the given instance
-</span><span style=color:#e6db74>	&#39;&#39;&#39;</span>
-	schedule <span style=color:#f92672>=</span> []
-	
-	<span style=color:#75715e>## Configure instance</span>
-	client <span style=color:#f92672>=</span> OpenQA_Client(server<span style=color:#f92672>=</span>instance)
-	path <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;jobs/</span><span style=color:#e6db74>%d</span><span style=color:#e6db74>/details&#34;</span> <span style=color:#f92672>%</span> (job)
-	job <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>openqa_request(method<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;GET&#34;</span>, path<span style=color:#f92672>=</span>path)[<span style=color:#e6db74>&#39;job&#39;</span>]
-	<span style=color:#75715e># iterate over testresults. category is only set for a new category (e.g. &#34;installation&#34;, &#34;console&#34;, ecc.)</span>
-	category <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>
-	<span style=color:#66d9ef>for</span> result <span style=color:#f92672>in</span> job[<span style=color:#e6db74>&#39;testresults&#39;</span>] :
-		<span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;category&#34;</span> <span style=color:#f92672>in</span> result : category <span style=color:#f92672>=</span> result[<span style=color:#e6db74>&#39;category&#39;</span>]
-		name <span style=color:#f92672>=</span> result[<span style=color:#e6db74>&#39;name&#39;</span>]
-		schedule<span style=color:#f92672>.</span>append(<span style=color:#e6db74>&#34;</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>/</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> (category, name))
-	<span style=color:#66d9ef>return</span> schedule
 
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>is_int</span>(x) :
-	<span style=color:#66d9ef>try</span> :
-		x <span style=color:#f92672>=</span> int(x)
-		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
-	<span style=color:#66d9ef>except</span> <span style=color:#a6e22e>ValueError</span> :
-		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_schedule</span>(instance, job):
+    <span style=color:#e6db74>&#34;&#34;&#34;
+</span><span style=color:#e6db74>    Build a SCHEDULE parameter from the given job (id) on the given instance
+</span><span style=color:#e6db74>    &#34;&#34;&#34;</span>
+    schedule <span style=color:#f92672>=</span> []
 
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>print_schedule</span>(schedule) :
-	<span style=color:#75715e># add &#39;tests/&#39; as prefix</span>
-	schedule <span style=color:#f92672>=</span> map(<span style=color:#66d9ef>lambda</span> x : <span style=color:#e6db74>&#39;tests/&#39;</span> <span style=color:#f92672>+</span> x, schedule)
-	text <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;,&#34;</span><span style=color:#f92672>.</span>join(schedule)
-	print(<span style=color:#e6db74>&#34;SCHEDULE=</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> text)
+    <span style=color:#75715e>## Configure instance</span>
+    client <span style=color:#f92672>=</span> OpenQA_Client(server<span style=color:#f92672>=</span>instance)
+    path <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;jobs/</span><span style=color:#e6db74>%d</span><span style=color:#e6db74>/details&#34;</span> <span style=color:#f92672>%</span> (job)
+    job <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>openqa_request(method<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;GET&#34;</span>, path<span style=color:#f92672>=</span>path)[<span style=color:#e6db74>&#34;job&#34;</span>]
+    <span style=color:#75715e># iterate over testresults. category is only set for a new category (e.g. &#34;installation&#34;, &#34;console&#34;, ecc.)</span>
+    category <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#66d9ef>for</span> result <span style=color:#f92672>in</span> job[<span style=color:#e6db74>&#34;testresults&#34;</span>]:
+        <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;category&#34;</span> <span style=color:#f92672>in</span> result:
+            category <span style=color:#f92672>=</span> result[<span style=color:#e6db74>&#34;category&#34;</span>]
+        name <span style=color:#f92672>=</span> result[<span style=color:#e6db74>&#34;name&#34;</span>]
+        schedule<span style=color:#f92672>.</span>append(<span style=color:#e6db74>&#34;</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>/</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> (category, name))
+    <span style=color:#66d9ef>return</span> schedule
 
-<span style=color:#e6db74>&#39;&#39;&#39;
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>is_int</span>(x):
+    <span style=color:#66d9ef>try</span>:
+        x <span style=color:#f92672>=</span> int(x)
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
+    <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>ValueError</span>:
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
+
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>print_schedule</span>(schedule):
+    <span style=color:#75715e># add &#39;tests/&#39; as prefix</span>
+    schedule <span style=color:#f92672>=</span> map(<span style=color:#66d9ef>lambda</span> x: <span style=color:#e6db74>&#34;tests/&#34;</span> <span style=color:#f92672>+</span> x, schedule)
+    text <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;,&#34;</span><span style=color:#f92672>.</span>join(schedule)
+    print(<span style=color:#e6db74>&#34;SCHEDULE=</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> text)
+
+
+<span style=color:#e6db74>&#34;&#34;&#34;
 </span><span style=color:#e6db74>Cleans an url, i.e. remove a possible fragment
-</span><span style=color:#e6db74>&#39;&#39;&#39;</span>
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>clean_url</span>(url) :
-	i <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>find(<span style=color:#e6db74>&#39;#&#39;</span>)
-	<span style=color:#66d9ef>if</span> i <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> : <span style=color:#66d9ef>return</span> url[:i]
-	<span style=color:#66d9ef>return</span> url
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
 
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>print_usage</span>() :
-	prog <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>0</span>]
-	print(<span style=color:#e6db74>&#34;Usage: </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> [INSTANCE,JOBURL,JOBID]&#34;</span> <span style=color:#f92672>%</span> prog)
-	print(<span style=color:#e6db74>&#34;  Assemble the SCHEDULE= variable from a given openQA job&#34;</span>)
-	print(<span style=color:#e6db74>&#34;&#34;</span>)
-	print(<span style=color:#e6db74>&#34;Examples:&#34;</span>)
-	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org/tests/12345&#34;</span> <span style=color:#f92672>%</span> prog)
-	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org/t12345&#34;</span> <span style=color:#f92672>%</span> prog)
-	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> --ooo 12345                                          # Same as above&#34;</span> <span style=color:#f92672>%</span> prog)
-	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> --o3 12345                                           # Same as above&#34;</span> <span style=color:#f92672>%</span> prog)
-	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> --osd 12345                                          # Use openqa.suse.de&#34;</span> <span style=color:#f92672>%</span> prog)
-	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org 12345 67890              # Two jobs, first define the instance&#34;</span> <span style=color:#f92672>%</span> prog)
-	print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org/tests/12345 67890        # Two jobs&#34;</span> <span style=color:#f92672>%</span> prog)
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>clean_url</span>(url):
+    i <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>find(<span style=color:#e6db74>&#34;#&#34;</span>)
+    <span style=color:#66d9ef>if</span> i <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+        <span style=color:#66d9ef>return</span> url[:i]
+    <span style=color:#66d9ef>return</span> url
+
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>print_usage</span>():
+    prog <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>0</span>]
+    print(<span style=color:#e6db74>&#34;Usage: </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> [INSTANCE,JOBURL,JOBID]&#34;</span> <span style=color:#f92672>%</span> prog)
+    print(<span style=color:#e6db74>&#34;  Assemble the SCHEDULE= variable from a given openQA job&#34;</span>)
+    print(<span style=color:#e6db74>&#34;&#34;</span>)
+    print(<span style=color:#e6db74>&#34;Examples:&#34;</span>)
+    print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org/tests/12345&#34;</span> <span style=color:#f92672>%</span> prog)
+    print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org/t12345&#34;</span> <span style=color:#f92672>%</span> prog)
+    print(
+        <span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> --ooo 12345                                          # Same as above&#34;</span>
+        <span style=color:#f92672>%</span> prog
+    )
+    print(
+        <span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> --o3 12345                                           # Same as above&#34;</span>
+        <span style=color:#f92672>%</span> prog
+    )
+    print(
+        <span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> --osd 12345                                          # Use openqa.suse.de&#34;</span>
+        <span style=color:#f92672>%</span> prog
+    )
+    print(
+        <span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org 12345 67890              # Two jobs, first define the instance&#34;</span>
+        <span style=color:#f92672>%</span> prog
+    )
+    print(<span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>%s</span><span style=color:#e6db74> https://openqa.opensuse.org/tests/12345 67890        # Two jobs&#34;</span> <span style=color:#f92672>%</span> prog)
+
 
 <span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
-	instance <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://openqa.opensuse.org&#34;</span>         <span style=color:#75715e># Default instance</span>
-	
-	<span style=color:#75715e># Lazy argument matching because I&#39;m lazy.</span>
-	<span style=color:#66d9ef>for</span> url <span style=color:#f92672>in</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>1</span>:] :
-		url <span style=color:#f92672>=</span> clean_url(url)
-		<span style=color:#66d9ef>if</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;-h&#34;</span> <span style=color:#f92672>or</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--help&#34;</span> :
-			print_usage()
-			sys<span style=color:#f92672>.</span>exit(<span style=color:#ae81ff>0</span>)
-		<span style=color:#66d9ef>elif</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--osd&#34;</span> :
-			instance <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://openqa.suse.de&#34;</span>
-		<span style=color:#66d9ef>elif</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--ooo&#34;</span> <span style=color:#f92672>or</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--o3&#34;</span> :
-			instance <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://openqa.opensuse.org&#34;</span>
-		<span style=color:#66d9ef>elif</span> <span style=color:#e6db74>&#34;/tests/&#34;</span> <span style=color:#f92672>in</span> url :         <span style=color:#75715e># https://openqa.opensuse.org/tests/12345</span>
-			i <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>find(<span style=color:#e6db74>&#34;/tests/&#34;</span>)
-			instance <span style=color:#f92672>=</span> url[:i]
-			job <span style=color:#f92672>=</span> int(url[i<span style=color:#f92672>+</span><span style=color:#ae81ff>7</span>:])
-			schedule <span style=color:#f92672>=</span> get_schedule(instance, job)
-			print_schedule(schedule)
-		<span style=color:#66d9ef>elif</span> <span style=color:#e6db74>&#34;/t&#34;</span> <span style=color:#f92672>in</span> url :              <span style=color:#75715e># https://openqa.opensuse.org/t12345</span>
-			i <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>rfind(<span style=color:#e6db74>&#34;/t&#34;</span>)
-			instance <span style=color:#f92672>=</span> url[:i]
-			job <span style=color:#f92672>=</span> int(url[i<span style=color:#f92672>+</span><span style=color:#ae81ff>2</span>:])
-			schedule <span style=color:#f92672>=</span> get_schedule(instance, job)
-			print_schedule(schedule)
-		<span style=color:#66d9ef>elif</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;http://&#34;</span>) <span style=color:#f92672>or</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;https://&#34;</span>) :
-			<span style=color:#75715e># Assume it&#39;s an instance</span>
-			instance <span style=color:#f92672>=</span> url
-		<span style=color:#66d9ef>elif</span> is_int(url) :              <span style=color:#75715e># after an instance is defined we can also just pass the job id</span>
-			job <span style=color:#f92672>=</span> int(url)
-			schedule <span style=color:#f92672>=</span> get_schedule(instance, job)
-			print_schedule(schedule)
-		<span style=color:#66d9ef>else</span> :
-			sys<span style=color:#f92672>.</span>stderr<span style=color:#f92672>.</span>write(<span style=color:#e6db74>&#34;Invalid argument: </span><span style=color:#e6db74>%s</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> url)
-			sys<span style=color:#f92672>.</span>exit(<span style=color:#ae81ff>1</span>)
+    instance <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://openqa.opensuse.org&#34;</span>  <span style=color:#75715e># Default instance</span>
+
+    <span style=color:#75715e># Lazy argument matching because I&#39;m lazy.</span>
+    <span style=color:#66d9ef>for</span> url <span style=color:#f92672>in</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>1</span>:]:
+        url <span style=color:#f92672>=</span> clean_url(url)
+        <span style=color:#66d9ef>if</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;-h&#34;</span> <span style=color:#f92672>or</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--help&#34;</span>:
+            print_usage()
+            sys<span style=color:#f92672>.</span>exit(<span style=color:#ae81ff>0</span>)
+        <span style=color:#66d9ef>elif</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--osd&#34;</span>:
+            instance <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://openqa.suse.de&#34;</span>
+        <span style=color:#66d9ef>elif</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--ooo&#34;</span> <span style=color:#f92672>or</span> url <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;--o3&#34;</span>:
+            instance <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://openqa.opensuse.org&#34;</span>
+        <span style=color:#66d9ef>elif</span> <span style=color:#e6db74>&#34;/tests/&#34;</span> <span style=color:#f92672>in</span> url:  <span style=color:#75715e># https://openqa.opensuse.org/tests/12345</span>
+            i <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>find(<span style=color:#e6db74>&#34;/tests/&#34;</span>)
+            instance <span style=color:#f92672>=</span> url[:i]
+            job <span style=color:#f92672>=</span> int(url[i <span style=color:#f92672>+</span> <span style=color:#ae81ff>7</span> :])
+            schedule <span style=color:#f92672>=</span> get_schedule(instance, job)
+            print_schedule(schedule)
+        <span style=color:#66d9ef>elif</span> <span style=color:#e6db74>&#34;/t&#34;</span> <span style=color:#f92672>in</span> url:  <span style=color:#75715e># https://openqa.opensuse.org/t12345</span>
+            i <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>rfind(<span style=color:#e6db74>&#34;/t&#34;</span>)
+            instance <span style=color:#f92672>=</span> url[:i]
+            job <span style=color:#f92672>=</span> int(url[i <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span> :])
+            schedule <span style=color:#f92672>=</span> get_schedule(instance, job)
+            print_schedule(schedule)
+        <span style=color:#66d9ef>elif</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;http://&#34;</span>) <span style=color:#f92672>or</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;https://&#34;</span>):
+            <span style=color:#75715e># Assume it&#39;s an instance</span>
+            instance <span style=color:#f92672>=</span> url
+        <span style=color:#66d9ef>elif</span> is_int(
+            url
+        ):  <span style=color:#75715e># after an instance is defined we can also just pass the job id</span>
+            job <span style=color:#f92672>=</span> int(url)
+            schedule <span style=color:#f92672>=</span> get_schedule(instance, job)
+            print_schedule(schedule)
+        <span style=color:#66d9ef>else</span>:
+            sys<span style=color:#f92672>.</span>stderr<span style=color:#f92672>.</span>write(<span style=color:#e6db74>&#34;Invalid argument: </span><span style=color:#e6db74>%s</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> url)
+            sys<span style=color:#f92672>.</span>exit(<span style=color:#ae81ff>1</span>)
 </code></pre></div>
 <div class=blog-tags>
 <a href=https://openQA-Bites.github.io//tags/openqa/>openQA</a>&nbsp;
