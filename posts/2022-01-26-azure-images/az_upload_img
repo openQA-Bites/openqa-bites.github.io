@@ -132,13 +132,13 @@ fi
 
 # Upload blob
 echo "Uploading blob ... "
-#az storage blob upload --account-name "$STORAGEACCOUNT" --container-name "$CONTAINERNAME" --file "$INFILE" --type page --name "$IMAGENAME"
+az storage blob upload --account-name "$STORAGEACCOUNT" --container-name "$CONTAINERNAME" --file "$INFILE" --type page --name "$IMAGENAME"
 # Create disk out of blob
 echo "Create disk ... "
-#az disk create --resource-group "$RESOURCEGROUP" --name "$DISKNAME" --source "https://${STORAGEACCOUNT}.blob.core.windows.net/${CONTAINERNAME}/${IMAGENAME}"
+az disk create --resource-group "$RESOURCEGROUP" --name "$DISKNAME" --source "https://${STORAGEACCOUNT}.blob.core.windows.net/${CONTAINERNAME}/${IMAGENAME}"
 # Create image out of disk
 echo "Create image ... "
-#az image create --resource-group "$RESOURCEGROUP" --name "$NAME" --os-type Linux --source "$DISKNAME"
+az image create --resource-group "$RESOURCEGROUP" --name "$NAME" --os-type Linux --source "$DISKNAME"
 
 echo -e "\n\nTask completed successfully. Created the new image $NAME in the resource group $RESOURCEGROUP"
 
