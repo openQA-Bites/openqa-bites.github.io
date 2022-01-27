@@ -106,29 +106,39 @@ if [[ $DISKNAME == "" ]]; then
 	DISKNAME="$IMAGENAME"
 fi
 
+# Cleanup routine
+RMFILES=""           # Temporary files to be deleted
+function cleanup {
+	if [[ $RMFILES != "" ]]; then
+		rm -f $RMFILES
+	fi
+}
+trap cleanup EXIT
 
 ## Check if we need to unpack the disk image
 if [[ $INFILE == *.xz ]]; then
 	echo "Unpacking disk image ... "
-	unxz "$INFILE"
+	unxz -k "$INFILE"
 	INFILE="$(basename $INFILE .xz)"
+	RMFILES="$RMFILES $INFILE"
 fi
 # Rename custom extension
 if [[ $INFILE == *.vhdfixed ]]; then
-	mv "$INFILE" "$(basename $INFILE .vdhfixed).vdh"
-	INFILE="$(basename $INFILE .vdhfixed).vdh"
+	mv "$INFILE" "$(basename $INFILE .vhdfixed).vdh"
+	INFILE="$(basename $INFILE .vhdfixed).vdh"
+	RMFILES="$RMFILES $INFILE"
 fi
 
 
 # Upload blob
 echo "Uploading blob ... "
-az storage blob upload --account-name "$STORAGEACCOUNT" --container-name "$CONTAINERNAME" --file "$INFILE" --type page --name "$IMAGENAME"
+#az storage blob upload --account-name "$STORAGEACCOUNT" --container-name "$CONTAINERNAME" --file "$INFILE" --type page --name "$IMAGENAME"
 # Create disk out of blob
 echo "Create disk ... "
-az disk create --resource-group "$RESOURCEGROUP" --name "$DISKNAME" --source "https://${STORAGEACCOUNT}.blob.core.windows.net/${CONTAINERNAME}/${IMAGENAME}"
+#az disk create --resource-group "$RESOURCEGROUP" --name "$DISKNAME" --source "https://${STORAGEACCOUNT}.blob.core.windows.net/${CONTAINERNAME}/${IMAGENAME}"
 # Create image out of disk
 echo "Create image ... "
-az image create --resource-group "$RESOURCEGROUP" --name "$NAME" --os-type Linux --source "$DISKNAME"
+#az image create --resource-group "$RESOURCEGROUP" --name "$NAME" --os-type Linux --source "$DISKNAME"
 
 echo -e "\n\nTask completed successfully. Created the new image $NAME in the resource group $RESOURCEGROUP"
 
