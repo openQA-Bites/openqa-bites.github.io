@@ -6,7 +6,7 @@
 <title>VS Code and poetry - openQA bites</title>
 <meta name=description content="poetry is (yet another) python packaging and dependency management system. In this blog post I&rsquo;m gonna describe how I am working with poetry repositories within VS Codium, the freely licensed variant of VS Code.">
 <meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2022-02-15-vscode-poetry\/","name":"Vs code and poetry"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"VS Code and poetry","description":"poetry is (yet another) python packaging and dependency management system. In this blog post I\u0026rsquo;m gonna describe how I am working with poetry repositories within VS Codium, the freely licensed variant of VS Code.","inLanguage":"en","wordCount":857,"datePublished":"2022-02-15T14:13:55","dateModified":"2022-02-15T14:13:55","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["vscode, python, poetry"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2022-02-15-vscode-poetry\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2022-02-15-vscode-poetry\/","name":"Vs code and poetry"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"VS Code and poetry","description":"poetry is (yet another) python packaging and dependency management system. In this blog post I\u0026rsquo;m gonna describe how I am working with poetry repositories within VS Codium, the freely licensed variant of VS Code.","inLanguage":"en","wordCount":925,"datePublished":"2022-02-15T14:13:55","dateModified":"2022-02-15T14:13:55","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["vscode, python, poetry"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2022-02-15-vscode-poetry\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
 <meta property="og:title" content="VS Code and poetry">
 <meta property="og:description" content="poetry is (yet another) python packaging and dependency management system. In this blog post I&rsquo;m gonna describe how I am working with poetry repositories within VS Codium, the freely licensed variant of VS Code.">
 <meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png">
@@ -116,7 +116,7 @@
 <span class=post-meta>
 <i class="fas fa-calendar"></i>&nbsp;Posted on February 15, 2022
 &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;857&nbsp;words
+&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;925&nbsp;words
 &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
 </span>
 </div>
@@ -130,6 +130,12 @@
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 <article role=main class=blog-post>
 <p><a href=https://python-poetry.org/>poetry</a> is (yet another) python packaging and dependency management system. In this blog post I&rsquo;m gonna describe how I am working with poetry repositories within <a href=https://vscodium.com/>VS Codium</a>, the freely licensed variant of VS Code.</p>
+<p>Now, the most easy way is to simply run</p>
+<pre><code>poetry run codium      # VS Codium
+poetry run code        # VS Code
+</code></pre>
+<p>In this case, <code>poetry</code> sets up the environment for you and you should be ready to go.
+However if for some reason that does not work for you or it is inpractical, one can configure it also manually. This is what we will do in this tutorial.</p>
 <p>In this tutorial we will:</p>
 <ol>
 <li>Create a new poetry project</li>
