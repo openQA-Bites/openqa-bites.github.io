@@ -7,7 +7,7 @@
 <meta name=description content="This blog post ist about uploading a custom VM disk image to the Azure cloud and create a VM to boot from this image.
 If you just want to upload a image, checkout the az_upload_img bash script at the very end of this post for a easy-to-use script without the need to dive into details.">
 <meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2022-01-26-azure-images\/","name":"Booting custom azure vm images"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Booting custom Azure VM images","description":"This blog post ist about uploading a custom VM disk image to the Azure cloud and create a VM to boot from this image.\nIf you just want to upload a image, checkout the az_upload_img bash script at the very end of this post for a easy-to-use script without the need to dive into details.","inLanguage":"en","wordCount":1105,"datePublished":"2022-01-26T16:03:48","dateModified":"2022-01-26T16:03:48","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["Azure"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2022-01-26-azure-images\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2022-01-26-azure-images\/","name":"Booting custom azure vm images"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"Booting custom Azure VM images","description":"This blog post ist about uploading a custom VM disk image to the Azure cloud and create a VM to boot from this image.\nIf you just want to upload a image, checkout the az_upload_img bash script at the very end of this post for a easy-to-use script without the need to dive into details.","inLanguage":"en","wordCount":1108,"datePublished":"2022-01-26T16:03:48","dateModified":"2022-01-26T16:03:48","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["Azure"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2022-01-26-azure-images\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
 <meta property="og:title" content="Booting custom Azure VM images">
 <meta property="og:description" content="This blog post ist about uploading a custom VM disk image to the Azure cloud and create a VM to boot from this image.
 If you just want to upload a image, checkout the az_upload_img bash script at the very end of this post for a easy-to-use script without the need to dive into details.">
@@ -119,7 +119,7 @@ If you just want to upload a image, checkout the az_upload_img bash script at th
 <span class=post-meta>
 <i class="fas fa-calendar"></i>&nbsp;Posted on January 26, 2022
 &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;6&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1105&nbsp;words
+&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1108&nbsp;words
 &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
 </span>
 </div>
@@ -233,7 +233,8 @@ az image create --resource-group <span style=color:#e6db74>&#34;</span>$RESOURCE
 <span style=color:#75715e># $NAME is the image name from the previous step</span>
 
 az vm create --resource-group <span style=color:#e6db74>&#34;</span>$RESOURCEGROUP<span style=color:#e6db74>&#34;</span> --name <span style=color:#e6db74>&#34;</span>$VMNAME<span style=color:#e6db74>&#34;</span> --image <span style=color:#e6db74>&#34;</span>$NAME<span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>  --size Standard_A2_v2 --admin-username phoenix --ssh-key-values ~/.ssh/id_rsa.pub
+</span><span style=color:#ae81ff></span>  --size Standard_A2_v2 --admin-username phoenix --ssh-key-values ~/.ssh/id_rsa.pub <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  --public-ip-sku Standard
 </code></pre></div><p>Modify the <code>admin-username</code> and the location for your ssh key accordingly. I&rsquo;m just using the default stuff.</p>
 <h2 id=cleanup>Cleanup</h2>
 <p>Note: In all steps we use the variables defined in the steps above.</p>
