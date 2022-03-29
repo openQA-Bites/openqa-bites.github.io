@@ -1,95 +1,16 @@
-<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>pasta - stupid simple pastebin service - openQA bites</title><meta name=description content="pasta is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution.">
-<meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script>
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-07-16-pasta\/","name":"Pasta stupid simple pastebin service"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"pasta - stupid simple pastebin service","description":"pasta is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution.","inLanguage":"en","wordCount":821,"datePublished":"2021-07-16T10:13:55","dateModified":"2021-07-16T10:13:55","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["tools, pasta"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-07-16-pasta\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script>
-<meta property="og:title" content="pasta - stupid simple pastebin service">
-<meta property="og:description" content="pasta is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution.">
-<meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png">
-<meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-07-16-pasta/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="openQA bites">
-<meta name=twitter:title content="pasta - stupid simple pastebin service">
-<meta name=twitter:description content="pasta is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution.">
-<meta name=twitter:image content="https://openQA-Bites.github.io/img/avatar-icon.png">
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="@grisu48">
-<meta name=twitter:creator content="@grisu48">
-<link href=https://openQA-Bites.github.io/img/favicon.ico rel=icon type=image/x-icon>
-<meta name=generator content="Hugo 0.93.1">
-<link rel=alternate href=https://openQA-Bites.github.io/index.xml type=application/rss+xml title="openQA bites"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous>
-<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous>
-<link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://openQA-Bites.github.io/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
-<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://openQA-Bites.github.io/css/syntax.css><link rel=stylesheet href=https://openQA-Bites.github.io/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous>
-</head><body>
-<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-<div class=container-fluid>
-<div class=navbar-header>
-<button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>pasta - stupid simple pastebin service - openQA bites</title><meta name=description content="pasta is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution."><meta name=author content="phoenix"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"openQA bites","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/openQA-Bites.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/openQA-Bites.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/openQA-Bites.github.io\/posts\/2021-07-16-pasta\/","name":"Pasta stupid simple pastebin service"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"phoenix"},"headline":"pasta - stupid simple pastebin service","description":"pasta is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution.","inLanguage":"en","wordCount":821,"datePublished":"2021-07-16T10:13:55","dateModified":"2021-07-16T10:13:55","image":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","keywords":["tools, pasta"],"mainEntityOfPage":"https:\/\/openQA-Bites.github.io\/posts\/2021-07-16-pasta\/","publisher":{"@type":"Organization","name":"https:\/\/openQA-Bites.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/openQA-Bites.github.io\/img\/avatar-icon.png","height":60,"width":60}}}</script><meta property="og:title" content="pasta - stupid simple pastebin service"><meta property="og:description" content="pasta is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution."><meta property="og:image" content="https://openQA-Bites.github.io/img/avatar-icon.png"><meta property="og:url" content="https://openQA-Bites.github.io/posts/2021-07-16-pasta/"><meta property="og:type" content="website"><meta property="og:site_name" content="openQA bites"><meta name=twitter:title content="pasta - stupid simple pastebin service"><meta name=twitter:description content="pasta is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution."><meta name=twitter:image content="https://openQA-Bites.github.io/img/avatar-icon.png"><meta name=twitter:card content="summary"><meta name=twitter:site content="@grisu48"><meta name=twitter:creator content="@grisu48"><link href=https://openQA-Bites.github.io/img/favicon.ico rel=icon type=image/x-icon><meta name=generator content="Hugo 0.96.0"><link rel=alternate href=https://openQA-Bites.github.io/index.xml type=application/rss+xml title="openQA bites"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://openQA-Bites.github.io/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://openQA-Bites.github.io/css/syntax.css><link rel=stylesheet href=https://openQA-Bites.github.io/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
 <span class=sr-only>Toggle navigation</span>
 <span class=icon-bar></span>
 <span class=icon-bar></span>
-<span class=icon-bar></span>
-</button>
-<a class=navbar-brand href=https://openQA-Bites.github.io/>openQA bites</a>
-</div><div class="collapse navbar-collapse" id=main-navbar>
-<ul class="nav navbar-nav navbar-right">
-<li class=navlinks-container>
-<a class=navlinks-parent>openQA</a>
-<div class=navlinks-children>
-<a href=https://openQA-Bites.github.io/openqa/openqa-cli-cheat-sheet>openqa-cli cheat sheet</a>
-</div></li><li>
-<a title=Categories href=https://openQA-Bites.github.io/categories/>Categories</a>
-</li><li>
-<a title=Tags href=https://openQA-Bites.github.io/tags/>Tags</a>
-</li><li>
-<a title=About href=https://openQA-Bites.github.io/about/>About</a>
-</li><li>
-<a title=Related href=https://openQA-Bites.github.io/related/>Related</a>
-</li></ul></div><div class=avatar-container>
-<div class=avatar-img-border>
-<a title="openQA bites" href=https://openQA-Bites.github.io/>
-<img class=avatar-img src=https://openQA-Bites.github.io/img/avatar-icon.png alt="openQA bites">
-</a>
-</div></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div><div class=pswp__scroll-wrap>
-<div class=pswp__container>
-<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
-<div class=pswp__top-bar>
-<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<span class=icon-bar></span></button>
+<a class=navbar-brand href=https://openQA-Bites.github.io/>openQA bites</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li class=navlinks-container><a class=navlinks-parent>openQA</a><div class=navlinks-children><a href=https://openQA-Bites.github.io/openqa/openqa-cli-cheat-sheet>openqa-cli cheat sheet</a></div></li><li><a title=Categories href=https://openQA-Bites.github.io/categories/>Categories</a></li><li><a title=Tags href=https://openQA-Bites.github.io/tags/>Tags</a></li><li><a title=About href=https://openQA-Bites.github.io/about/>About</a></li><li><a title=Related href=https://openQA-Bites.github.io/related/>Related</a></li></ul></div><div class=avatar-container><div class=avatar-img-border><a title="openQA bites" href=https://openQA-Bites.github.io/><img class=avatar-img src=https://openQA-Bites.github.io/img/avatar-icon.png alt="openQA bites"></a></div></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-<div class=pswp__preloader>
-<div class=pswp__preloader__icn>
-<div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-</button>
-<div class=pswp__caption>
-<div class=pswp__caption__center></div></div></div></div></div><header class=header-section>
-<div class="intro-header no-img">
-<div class=container>
-<div class=row>
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<div class=post-heading>
-<h1>pasta - stupid simple pastebin service</h1><span class=post-meta>
-<i class="fas fa-calendar"></i>&nbsp;Posted on July 16, 2021
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=post-heading><h1>pasta - stupid simple pastebin service</h1><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;Posted on July 16, 2021
 &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
 &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;821&nbsp;words
-&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix
-</span>
-</div></div></div></div></div></header><div class=container role=main>
-<div class=row>
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<article role=main class=blog-post>
-<p><a href=https://github.com/grisu48/pasta><code>pasta</code></a> is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution. This is what <code>pasta</code> is about. You just throw a file at it via it&rsquo;s archaic web interface, a simple <code>POST</code> request or with its stupid simple CLI tool:</p><pre><code>$ pasta pasta.txt                                 # push pasta.txt file
+&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;phoenix</span></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p><a href=https://github.com/grisu48/pasta><code>pasta</code></a> is a stupid simple pastebin service for self-hosting. I started this project months ago because I was missing an easy, simple and no pain self-hosting solution. This is what <code>pasta</code> is about. You just throw a file at it via it&rsquo;s archaic web interface, a simple <code>POST</code> request or with its stupid simple CLI tool:</p><pre><code>$ pasta pasta.txt                                 # push pasta.txt file
 https://pasta.feldspaten.org/JUa0ws6E             # resulting link
 </code></pre><p>Pushed pastes are called <strong>pastas</strong> and they automatically expire after 1 month (can be changed by the server config). Once submitted you get a modification token, which you can use to modify and delete accidentally submitted pastas.</p><p>The <code>pasta</code> client runs out of the box against the default localhost URL. The <code>pastad</code> server only requires a simple configuration file and a data directory. No database or other dependencies are required. That&rsquo;s why I call it stupid simple.</p><h1 id=installation>Installation</h1><p><code>pasta</code> is within my <a href=https://build.opensuse.org/package/show/home%3Aph03nix%3Atools/pasta>tools repository</a> and can be found on <a href=https://software.opensuse.org/package/pasta>software.opensuse.org</a>. I might at some point dare to submit it to the official openSUSE repositories, if the project is considered useful to enough people. For now I&rsquo;d like to keep it &ldquo;experimental&rdquo;.</p><p>On openSUSE you can easily install it by adding my repository:</p><pre><code># Tumbleweed
 zypper addrepo https://download.opensuse.org/repositories/home:ph03nix:tools/openSUSE_Tumbleweed/home:ph03nix:tools.repo
@@ -134,114 +55,23 @@ wget -O /srv/pasta/pastad.toml https://github.com/grisu48/pasta/raw/main/pastad.
 vim /srv/pasta/pastad.toml           # adjust to your needs
 </code></pre><p>See also the mirrored <a href=pastad.toml.example>pastad.toml.example</a> here on the blog, in case of 404 errors or if the format unexpectedly changes.</p><p>Then let&rsquo;s create the <code>podman</code> container and run it</p><pre><code>podman container create --name &quot;pasta&quot; -p 8199:8199 -v /srv/pasta:/data grisu48/pasta
 podman start &quot;pasta&quot;
-</code></pre><p>Check if the service is running properly by visiting <a href=http://localhost:8199>http://localhost:8199</a>. You should see this (archaic) web interface:</p><p><img src=webinterface.png alt="Screenshot of the archaic webinterface. Basic http form showing a Browse button next to an upload button"></p><p>You can use this right away or use the <code>pasta</code> client to interact with it. If no configured otherwise in <code>~/.pasta.toml</code>, the client uses http://localhost:8199 as remote server.</p><p>And that&rsquo;s all you need to run it. That&rsquo;s why it&rsquo;s called &ldquo;stupid simple&rdquo; :-)</p><hr>
-<p>Note: I currently only have a container for <code>x86_64</code> (because I&rsquo;m lazy). I will include at least <code>aarch64</code> in the future, so you can also run it on your nice little ARM boards. It&rsquo;s on my TODO-list and I also want to have it.</p><h1 id=tldr>TL;DR</h1><ul>
-<li>pasta is a stupid simple pastebin service, it only requires a config file and a data directory to work</li><li>Easy deploy it via a provided container (tested with <code>podman</code> and <code>docker</code>) - See the section &ldquo;Deployment via podman container&rdquo; below</li><li>Use the <code>pasta</code> client to quickly push files from your terminal</li><li>Configure the default host where <code>pasta</code> pushed your pastes (&ldquo;pastas&rdquo;) via <code>~/.pasta.toml</code>:</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#75715e># Default server where pastas are pushed to</span>
+</code></pre><p>Check if the service is running properly by visiting <a href=http://localhost:8199>http://localhost:8199</a>. You should see this (archaic) web interface:</p><p><img src=webinterface.png alt="Screenshot of the archaic webinterface. Basic http form showing a Browse button next to an upload button"></p><p>You can use this right away or use the <code>pasta</code> client to interact with it. If no configured otherwise in <code>~/.pasta.toml</code>, the client uses http://localhost:8199 as remote server.</p><p>And that&rsquo;s all you need to run it. That&rsquo;s why it&rsquo;s called &ldquo;stupid simple&rdquo; :-)</p><hr><p>Note: I currently only have a container for <code>x86_64</code> (because I&rsquo;m lazy). I will include at least <code>aarch64</code> in the future, so you can also run it on your nice little ARM boards. It&rsquo;s on my TODO-list and I also want to have it.</p><h1 id=tldr>TL;DR</h1><ul><li>pasta is a stupid simple pastebin service, it only requires a config file and a data directory to work</li><li>Easy deploy it via a provided container (tested with <code>podman</code> and <code>docker</code>) - See the section &ldquo;Deployment via podman container&rdquo; below</li><li>Use the <code>pasta</code> client to quickly push files from your terminal</li><li>Configure the default host where <code>pasta</code> pushed your pastes (&ldquo;pastas&rdquo;) via <code>~/.pasta.toml</code>:</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#75715e># Default server where pastas are pushed to</span>
 </span></span><span style=display:flex><span><span style=color:#a6e22e>RemoteHost</span> = <span style=color:#e6db74>&#34;https://pasta.feldspaten.org&#34;</span>
-</span></span></code></pre></div><ul>
-<li>Archaic webinterface, which &ldquo;just works&rdquo;</li><li>Alternative: Just use <code>curl</code> to push a file: <code>curl -X POST 'https://pasta.feldspaten.org' --data-binary @pasta.txt</code> (push <code>pasta.txt</code> to <a href=https://pasta.feldspaten.org>https://pasta.feldspaten.org</a>)</li></ul><div class=blog-tags>
-<a href=https://openQA-Bites.github.io//tags/tools/>tools</a>&nbsp;
-<a href=https://openQA-Bites.github.io//tags/pasta/>pasta</a>&nbsp;
-</div><hr>
-<section id=social-share>
-<div class="list-inline footer-links">
-<div class=share-box aria-hidden=true>
-<ul class=share>
-<li>
-<a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&text=pasta%20-%20stupid%20simple%20pastebin%20service&via=grisu48" target=_blank title="Share on Twitter">
-<i class="fab fa-twitter"></i>
-</a>
-</li><li>
-<a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f" target=_blank title="Share on Facebook">
-<i class="fab fa-facebook"></i>
-</a>
-</li><li>
-<a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&title=pasta%20-%20stupid%20simple%20pastebin%20service" target=_blank title="Share on Reddit">
-<i class="fab fa-reddit"></i>
-</a>
-</li><li>
-<a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&title=pasta%20-%20stupid%20simple%20pastebin%20service" target=_blank title="Share on LinkedIn">
-<i class="fab fa-linkedin"></i>
-</a>
-</li><li>
-<a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&title=pasta%20-%20stupid%20simple%20pastebin%20service" target=_blank title="Share on StumbleUpon">
-<i class="fab fa-stumbleupon"></i>
-</a>
-</li><li>
-<a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&description=pasta%20-%20stupid%20simple%20pastebin%20service" target=_blank title="Share on Pinterest">
-<i class="fab fa-pinterest"></i>
-</a>
-</li></ul></div></div></section></article><ul class="pager blog-pager">
-<li class=previous>
-<a href=https://openQA-Bites.github.io/posts/2021-05-12-failing-external-results/ data-toggle=tooltip data-placement=top title="Hidden gem - Show failures only in external results">&larr; Previous Post</a>
-</li><li class=next>
-<a href=https://openQA-Bites.github.io/posts/2021-08-13-local-go-modules/ data-toggle=tooltip data-placement=top title="Use local go modules">Next Post &rarr;</a>
-</li></ul></div></div></div><footer>
-<div class=container>
-<div class=row>
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<ul class="list-inline text-center footer-links">
-<li>
-<a href=mailto:felix.niederwanger@suse.de title="Email me">
-<span class="fa-stack fa-lg">
-<i class="fas fa-circle fa-stack-2x"></i>
-<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
-</span>
-</a>
-</li><li>
-<a href=https://github.com/grisu48 title=GitHub>
-<span class="fa-stack fa-lg">
-<i class="fas fa-circle fa-stack-2x"></i>
-<i class="fab fa-github fa-stack-1x fa-inverse"></i>
-</span>
-</a>
-</li><li>
-<a href=https://twitter.com/grisu48 title=Twitter>
-<span class="fa-stack fa-lg">
-<i class="fas fa-circle fa-stack-2x"></i>
-<i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-</span>
-</a>
-</li><li>
-<a href=https://reddit.com/u/grisu48 title=Reddit>
-<span class="fa-stack fa-lg">
-<i class="fas fa-circle fa-stack-2x"></i>
-<i class="fab fa-reddit-alien fa-stack-1x fa-inverse"></i>
-</span>
-</a>
-</li><li>
-<a href=https://linkedin.com/in/felix-niederwanger title=LinkedIn>
-<span class="fa-stack fa-lg">
-<i class="fas fa-circle fa-stack-2x"></i>
-<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-</span>
-</a>
-</li><li>
-<a href=https://chaos.social/@phoenix title=Mastodon>
-<span class="fa-stack fa-lg">
-<i class="fas fa-circle fa-stack-2x"></i>
-<i class="fab fa-mastodon fa-stack-1x fa-inverse"></i>
-</span>
-</a>
-</li><li>
-<a href title=RSS>
-<span class="fa-stack fa-lg">
-<i class="fas fa-circle fa-stack-2x"></i>
-<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-</span>
-</a>
-</li></ul><p class="credits copyright text-muted">
-phoenix
+</span></span></code></pre></div><ul><li>Archaic webinterface, which &ldquo;just works&rdquo;</li><li>Alternative: Just use <code>curl</code> to push a file: <code>curl -X POST 'https://pasta.feldspaten.org' --data-binary @pasta.txt</code> (push <code>pasta.txt</code> to <a href=https://pasta.feldspaten.org>https://pasta.feldspaten.org</a>)</li></ul><div class=blog-tags><a href=https://openQA-Bites.github.io//tags/tools/>tools</a>&nbsp;
+<a href=https://openQA-Bites.github.io//tags/pasta/>pasta</a>&nbsp;</div><hr><section id=social-share><div class="list-inline footer-links"><div class=share-box aria-hidden=true><ul class=share><li><a href="//twitter.com/share?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&text=pasta%20-%20stupid%20simple%20pastebin%20service&via=grisu48" target=_blank title="Share on Twitter"><i class="fab fa-twitter"></i></a></li><li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook"></i></a></li><li><a href="//reddit.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&title=pasta%20-%20stupid%20simple%20pastebin%20service" target=_blank title="Share on Reddit"><i class="fab fa-reddit"></i></a></li><li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&title=pasta%20-%20stupid%20simple%20pastebin%20service" target=_blank title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a></li><li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&title=pasta%20-%20stupid%20simple%20pastebin%20service" target=_blank title="Share on StumbleUpon"><i class="fab fa-stumbleupon"></i></a></li><li><a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fopenQA-Bites.github.io%2fposts%2f2021-07-16-pasta%2f&description=pasta%20-%20stupid%20simple%20pastebin%20service" target=_blank title="Share on Pinterest"><i class="fab fa-pinterest"></i></a></li></ul></div></div></section></article><ul class="pager blog-pager"><li class=previous><a href=https://openQA-Bites.github.io/posts/2021-05-12-failing-external-results/ data-toggle=tooltip data-placement=top title="Hidden gem - Show failures only in external results">&larr; Previous Post</a></li><li class=next><a href=https://openQA-Bites.github.io/posts/2021-08-13-local-go-modules/ data-toggle=tooltip data-placement=top title="Use local go modules">Next Post &rarr;</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"><li><a href=mailto:felix.niederwanger@suse.de title="Email me"><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://github.com/grisu48 title=GitHub><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://twitter.com/grisu48 title=Twitter><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://reddit.com/u/grisu48 title=Reddit><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-reddit-alien fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://linkedin.com/in/felix-niederwanger title=LinkedIn><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://chaos.social/@phoenix title=Mastodon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-mastodon fa-stack-1x fa-inverse"></i></span></a></li><li><a href title=RSS><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i></span></a></li></ul><p class="credits copyright text-muted">phoenix
 &nbsp;&bull;&nbsp;&copy;
 2022
 &nbsp;&bull;&nbsp;
-<a href=https://openQA-Bites.github.io/>openQA bites</a>
-</p><p class="credits theme-by text-muted">
-<a href=https://gohugo.io>Hugo v0.93.1</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a>
-</p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script>
+<a href=https://openQA-Bites.github.io/>openQA bites</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.96.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script>
 <script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script>
 <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
 <script src=https://openQA-Bites.github.io/js/main.js></script><script>renderMathInElement(document.body)</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://openQA-Bites.github.io/js/load-photoswipe.js></script>
-</body></html>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://openQA-Bites.github.io/js/load-photoswipe.js></script></body></html>
